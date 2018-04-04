@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,6 +32,13 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="BtR-69-Ato">
                                 <rect key="frame" x="92.5" y="597" width="191.5" height="31"/>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlt-4U-AVM">
+                                <rect key="frame" x="139.5" y="524" width="95" height="30"/>
+                                <state key="normal" title="generate SVG"/>
+                                <connections>
+                                    <action selector="generateSVG:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bfB-jT-Tym"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -39,6 +46,8 @@
                             <constraint firstItem="aYb-Tk-209" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="O2e-ld-zp3"/>
                             <constraint firstAttribute="trailing" secondItem="aYb-Tk-209" secondAttribute="trailing" id="R5X-1f-3b9"/>
                             <constraint firstItem="BtR-69-Ato" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WMt-Ic-j8o"/>
+                            <constraint firstItem="BtR-69-Ato" firstAttribute="top" secondItem="xlt-4U-AVM" secondAttribute="bottom" constant="43" id="bXs-Eo-ks3"/>
+                            <constraint firstItem="xlt-4U-AVM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c86-Yc-tkk"/>
                             <constraint firstItem="BtR-69-Ato" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="l6J-e5-W9e"/>
                             <constraint firstItem="aYb-Tk-209" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="m40-4p-w8i"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BtR-69-Ato" secondAttribute="bottom" constant="40" id="yEl-f6-XD6"/>

@@ -52,4 +52,12 @@
     _imageView.image = [_porygon lowPolyWithImage:[UIImage imageNamed:@"camera"]];
 }
 
+- (IBAction)generateSVG:(UIButton *)sender {
+    NSString *svgString = [_porygon generateSVG];
+    NSData *svgData = [svgString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *filePath = [[NSTemporaryDirectory() stringByAppendingString:[[NSUUID UUID] UUIDString]] stringByAppendingPathExtension:@"svg"];
+    [svgData writeToFile:filePath atomically:YES];
+}
+
+
 @end
