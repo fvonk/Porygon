@@ -24,8 +24,6 @@
 		2BD182841EEE454200271843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD182831EEE454200271843 /* Assets.xcassets */; };
 		2BD182871EEE454200271843 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BD182851EEE454200271843 /* LaunchScreen.storyboard */; };
 		2BD182901EEE47E600271843 /* Porygon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD182031EED8CF200271843 /* Porygon.framework */; };
-		2BD183061EF2462300271843 /* Poisson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BD183021EF2462300271843 /* Poisson.cpp */; };
-		2BD183071EF2462300271843 /* Poisson.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2BD183031EF2462300271843 /* Poisson.hpp */; };
 		2BD183081EF2462300271843 /* PoissonGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BD183041EF2462300271843 /* PoissonGenerator.cpp */; };
 		2BD183091EF2462300271843 /* PoissonGenerator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2BD183051EF2462300271843 /* PoissonGenerator.hpp */; };
 		2BD1830C1EF2465100271843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD1830B1EF2465100271843 /* UIKit.framework */; };
@@ -207,7 +205,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BD182161EED8F3500271843 /* Porygon.h in Headers */,
-				2BD183071EF2462300271843 /* Poisson.hpp in Headers */,
 				2BD183091EF2462300271843 /* PoissonGenerator.hpp in Headers */,
 				2BD1826D1EEE37D200271843 /* DVSPorygon.h in Headers */,
 				2BD182691EEE35E900271843 /* UIImage+DVSPixel.h in Headers */,
@@ -354,7 +351,6 @@
 				EF026B6D2074B2AA00E0754C /* SVGPolyline.m in Sources */,
 				2BD1826E1EEE37D200271843 /* DVSPorygon.m in Sources */,
 				2BD182621EED93E600271843 /* delaunay.c in Sources */,
-				2BD183061EF2462300271843 /* Poisson.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
