@@ -46,7 +46,7 @@
 int const DVS_GRAY_LIMIT_VALUE = 40;
 int const DVS_DEFAULT_RANDOM_COUNT = 500;
 int const DVS_DEFAULT_VERTEX_COUNT = 500;
-int const DVS_MAX_VERTEX_COUNT = 5000;
+int const DVS_MAX_VERTEX_COUNT = 1000;
 int const DVS_MIN_VERTEX_COUNT = 100;
 
 @interface DVSPoint : NSObject

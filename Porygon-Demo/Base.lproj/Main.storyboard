@@ -30,7 +30,7 @@
                                 </constraints>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="BtR-69-Ato">
-                                <rect key="frame" x="45.5" y="597" width="285.5" height="31"/>
+                                <rect key="frame" x="111.5" y="597" width="154" height="31"/>
                                 <connections>
                                     <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="qF2-pm-QjW"/>
                                 </connections>
@@ -60,7 +60,7 @@
                             <constraint firstItem="BtR-69-Ato" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WMt-Ic-j8o"/>
                             <constraint firstItem="BtR-69-Ato" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xlt-4U-AVM" secondAttribute="bottom" constant="4" id="bXs-Eo-ks3"/>
                             <constraint firstItem="xlt-4U-AVM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c86-Yc-tkk"/>
-                            <constraint firstItem="BtR-69-Ato" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="l6J-e5-W9e"/>
+                            <constraint firstItem="BtR-69-Ato" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="l6J-e5-W9e"/>
                             <constraint firstItem="aYb-Tk-209" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="m40-4p-w8i"/>
                             <constraint firstItem="xlt-4U-AVM" firstAttribute="top" secondItem="aYb-Tk-209" secondAttribute="bottom" constant="16" id="wO0-cb-VVr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BtR-69-Ato" secondAttribute="bottom" constant="40" id="yEl-f6-XD6"/>

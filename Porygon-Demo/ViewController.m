@@ -31,9 +31,12 @@
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (nonatomic) DVSPorygon *porygon;
 @property (nonatomic) UIImage *currentImage;
+
+@property (nonatomic) NSOperationQueue *operationQueue;
+
 @end
 
-@implementation ViewController 
+@implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,13 +46,23 @@
     _slider.maximumValue = DVS_MAX_VERTEX_COUNT;
     _slider.value = _porygon.vertexCount;
     
-    _currentImage = [UIImage imageNamed:@"camera"];
+    _operationQueue = [[NSOperationQueue alloc] init];
+    [_operationQueue setMaxConcurrentOperationCount:1];
+    self.currentImage = [UIImage imageNamed:@"camera"];
     
     [self updatePorygon];
 }
 
 -(void)updatePorygon {
-    _imageView.image = [_porygon lowPolyWithImage:_currentImage];
+    [_operationQueue cancelAllOperations];
+    __weak typeof(self)weakSelf = self;
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+        UIImage *resultImage = [weakSelf.porygon lowPolyWithImage:weakSelf.currentImage];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.imageView.image = resultImage;
+        });
+    }];
+    [_operationQueue addOperation:operation];
 }
 
 - (IBAction)sliderValueChanged:(UISlider *)sender {
@@ -80,10 +93,57 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //You can retrieve the actual UIImage
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    _currentImage = image;
+    self.currentImage = image;
     [self updatePorygon];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)setCurrentImage:(UIImage *)currentImage {
+    _currentImage = [self compressImage: currentImage];
+}
+
+-(UIImage *)compressImage:(UIImage *)image{
+    
+    NSData *imgData = UIImageJPEGRepresentation(image, 1); //1 it represents the quality of the image.
+    NSLog(@"Size of Image(bytes):%ld",(unsigned long)[imgData length]);
+    
+    float actualHeight = image.size.height;
+    float actualWidth = image.size.width;
+    float maxHeight = 600.0;
+    float maxWidth = 800.0;
+    float imgRatio = actualWidth/actualHeight;
+    float maxRatio = maxWidth/maxHeight;
+    float compressionQuality = 0.5;//50 percent compression
+    
+    if (actualHeight > maxHeight || actualWidth > maxWidth){
+        if(imgRatio < maxRatio){
+            //adjust width according to maxHeight
+            imgRatio = maxHeight / actualHeight;
+            actualWidth = imgRatio * actualWidth;
+            actualHeight = maxHeight;
+        }
+        else if(imgRatio > maxRatio){
+            //adjust height according to maxWidth
+            imgRatio = maxWidth / actualWidth;
+            actualHeight = imgRatio * actualHeight;
+            actualWidth = maxWidth;
+        }
+        else{
+            actualHeight = maxHeight;
+            actualWidth = maxWidth;
+        }
+    }
+    
+    CGRect rect = CGRectMake(0.0, 0.0, actualWidth, actualHeight);
+    UIGraphicsBeginImageContext(rect.size);
+    [image drawInRect:rect];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    NSData *imageData = UIImageJPEGRepresentation(img, compressionQuality);
+    UIGraphicsEndImageContext();
+    
+    NSLog(@"Size of Image(bytes):%ld",(unsigned long)[imageData length]);
+    
+    return [UIImage imageWithData:imageData];
+}
 
 @end
