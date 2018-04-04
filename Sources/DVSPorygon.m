@@ -198,15 +198,16 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
     if (!image) {
         return nil;
     }
-
+    [_currentPolylines removeAllObjects];
+    
     struct PixelData pd = [image pixelData];
     unsigned char *pixel = pd.rawData;
     int w = pd.width;
     int h = pd.height;
-
+    
     unsigned char *grayPixel = (unsigned char *)calloc(w * h * 4, sizeof(unsigned char));
     unsigned char *sobelPixel = (unsigned char *)calloc(w * h * 4, sizeof(unsigned char));
-
+    
     // to gray
     for (int i = 0; i < w * h * 4; i += 4) {
         int r = pixel[i];
@@ -218,7 +219,7 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
         grayPixel[i + 2] = avg;
         grayPixel[i + 3] = 255;
     }
-
+    
     int grayCount = 0;
     for (int y = 0; y < h; y++) {
         for (int x = 0; x < w; x++) {
@@ -234,7 +235,7 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
             }
         }
     }
-
+    
     // save edge ponit
     int j = 0;
     del_point2d_t *points = (del_point2d_t *)calloc(grayCount, sizeof(del_point2d_t));
@@ -247,23 +248,23 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
             }
         }
     }
-
+    
     // shuffle edge point
     shuffle(points, grayCount, sizeof(points[0]));
-
+    
     int shuffe_count = _vertexCount; // selected edge point count
     NSMutableArray *edgePointArray = [NSMutableArray arrayWithCapacity:shuffe_count];
     for (int i = 0; i < shuffe_count; i++) {
         [edgePointArray addObject:[[DVSPoint alloc] initWithX:points[i].x y:points[i].y]];
     }
     NSMutableSet *edgePointSet = [NSMutableSet setWithArray:edgePointArray];
-
+    
     // add top vertex and bottom vertex
     [edgePointSet addObject:[[DVSPoint alloc] initWithX:0 y:0]];
     [edgePointSet addObject:[[DVSPoint alloc] initWithX:w y:0]];
     [edgePointSet addObject:[[DVSPoint alloc] initWithX:w y:h]];
     [edgePointSet addObject:[[DVSPoint alloc] initWithX:0 y:h]];
-
+    
     // add random point
     if (_isPoisson) {
         const auto Points = generatePosisson(_randomCount);
@@ -283,28 +284,28 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
         }
     }
     
-
+    
     NSUInteger result_count = [edgePointSet count];
     del_point2d_t *result_points = (del_point2d_t *)calloc(result_count, sizeof(del_point2d_t));
-
+    
     int i = 0;
     for (DVSPoint *p in edgePointSet) {
         result_points[i].x = p.x;
         result_points[i].y = p.y;
         i++;
     }
-
+    
     // step 2. convert to 2d delaunay
     delaunay2d_t *t = delaunay2d_from(result_points, (int)result_count);
     tri_delaunay2d_t *tri = tri_delaunay2d_from(t);
-
+    
     int thickness = 1;
     UIGraphicsBeginImageContext(CGSizeMake(w, h));
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetAllowsAntialiasing(context, true);
     CGContextSetShouldAntialias(context, true);
     CGContextBeginPath(context);
-
+    
     for (int i = 0, j = 0; i < tri->num_triangles; i++, j += 3) {
         int indice_1 = tri->tris[j];
         int indice_2 = tri->tris[j + 1];
@@ -315,16 +316,25 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
         int y2 = tri->points[indice_2].y;
         int x3 = tri->points[indice_3].x;
         int y3 = tri->points[indice_3].y;
-
+        
         // Get the coordinates of the color
         int x = (x1 + x2 + x3) / 3;
         int y = (y1 + y2 + y3) / 3;
-
+        
         float r = get_color_i(pixel, w, h, x, y, 0) / 255.0;
         float g = get_color_i(pixel, w, h, x, y, 1) / 255.0;
         float b = get_color_i(pixel, w, h, x, y, 2) / 255.0;
         float a = get_color_i(pixel, w, h, x, y, 3) / 255.0;
-
+        
+        NSString *identifier = [NSString stringWithFormat:@"Fill-%d", i];
+        NSString *hexColor = [self hexStringForColor:[UIColor colorWithRed:r green:g blue:b alpha:a]];
+        SVGPolyline *polyline = [[SVGPolyline alloc] initWithIdentifier:identifier withHexColor:hexColor withPoints:@[
+                                                                                                                      [NSValue valueWithCGPoint:CGPointMake(tri->points[indice_1].x, tri->points[indice_1].y)],
+                                                                                                                      [NSValue valueWithCGPoint:CGPointMake(tri->points[indice_2].x, tri->points[indice_2].y)],
+                                                                                                                      [NSValue valueWithCGPoint:CGPointMake(tri->points[indice_3].x, tri->points[indice_3].y)]
+                                                                                                                      ]];
+        [_currentPolylines addObject:polyline];
+        
         CGContextSetRGBFillColor(context, r, g, b, a);
         CGContextSetRGBStrokeColor(context, r, g, b, a);
         CGContextSetLineWidth(context, thickness);
@@ -333,7 +343,8 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
         CGContextAddLineToPoint(context, x3, y3);
         CGContextAddLineToPoint(context, x1, y1);
         CGContextDrawPath(context, kCGPathFillStroke);
-
+        
+        
         // draw wireframe
         if (_isWireframe) {
             CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);
@@ -345,10 +356,10 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
             CGContextStrokePath(context);
         }
     }
-
+    
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
+    
     tri_delaunay2d_release(tri);
     delaunay2d_release(t);
     free(result_points);
@@ -357,6 +368,46 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
     free(grayPixel);
     free(pixel);
     return outputImage;
+}
+
+- (NSString *)hexStringForColor:(UIColor *)color {
+    const CGFloat *components = CGColorGetComponents(color.CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    return hexString;
+}
+
+-(NSString *)generateSVG
+{
+    NSString *title = [[NSProcessInfo processInfo] globallyUniqueString];
+    NSMutableString* svgAsString = [NSMutableString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
+                                    <svg width=\"maxWidthpx\" height=\"maxHeightpx\" viewBox=\"0 0 maxWidth maxHeight\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> \n\
+                                    <title>%@</title> \n\
+                                    <desc>Created with Porygon</desc> \n\
+                                    <defs></defs> \n\
+                                    <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> \n\
+                                    <g id=\"Puzzle\" fill-rule=\"nonzero\">\n", title];
+    
+    CGFloat maxWidth = 0.0;
+    CGFloat maxHeight = 0.0;
+    for (SVGPolyline *polyline in _currentPolylines) {
+        NSMutableString *pointsString = [[NSMutableString alloc] init];
+        for (NSValue *point in polyline.points) {
+            [pointsString appendFormat:@"%f %f ", point.CGPointValue.x, point.CGPointValue.y];
+            if (point.CGPointValue.x > maxWidth)
+                maxWidth = point.CGPointValue.x;
+            if (point.CGPointValue.y > maxHeight)
+                maxHeight = point.CGPointValue.y;
+        }
+        [svgAsString appendFormat:@"<polyline id=\"%@\" fill=\"#%@\" points=\"%@\"></polyline>\n", [polyline identifier], [polyline hexColor], pointsString];
+    }
+    [svgAsString replaceOccurrencesOfString:@"maxWidth" withString:[NSString stringWithFormat:@"%f", maxWidth] options:NSLiteralSearch range:NSMakeRange(0, svgAsString.length)];
+    [svgAsString replaceOccurrencesOfString:@"maxHeight" withString:[NSString stringWithFormat:@"%f", maxHeight] options:NSLiteralSearch range:NSMakeRange(0, svgAsString.length)];
+    NSString *endSvg = @"</g>\n</g>\n</svg>";
+    [svgAsString appendString:endSvg];
+    return svgAsString;
 }
 
 #pragma mark Private

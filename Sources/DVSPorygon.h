@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "SVGPolyline.h"
 
 @interface DVSPorygon : NSObject
 
@@ -35,7 +36,10 @@ UIKIT_EXTERN int const DVS_MIN_VERTEX_COUNT;
 @property (nonatomic) int vertexCount;
 @property (nonatomic) BOOL isWireframe;
 // default use Poisson Disk Sampling
+@property (nonatomic) NSMutableArray<SVGPolyline *> *currentPolylines;
+
+// default use Poisson Disk Sampling
 @property (nonatomic) BOOL isPoisson;
 - (UIImage *)lowPolyWithImage:(UIImage *) image;
-
+- (NSString *)generateSVG;
 @end
