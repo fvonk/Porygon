@@ -30,9 +30,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (nonatomic) DVSPorygon *porygon;
+@property (nonatomic) UIImage *currentImage;
 @end
 
-@implementation ViewController
+@implementation ViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,22 +42,47 @@
     _slider.minimumValue = DVS_MIN_VERTEX_COUNT;
     _slider.maximumValue = DVS_MAX_VERTEX_COUNT;
     _slider.value = _porygon.vertexCount;
-    _imageView.image = [_porygon lowPolyWithImage:[UIImage imageNamed:@"camera"]];
     
-    [_slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    _currentImage = [UIImage imageNamed:@"camera"];
+    
+    [self updatePorygon];
+}
+
+-(void)updatePorygon {
+    _imageView.image = [_porygon lowPolyWithImage:_currentImage];
 }
 
 - (IBAction)sliderValueChanged:(UISlider *)sender {
-    int count = sender.value;
-    _porygon.vertexCount = count;
-    _imageView.image = [_porygon lowPolyWithImage:[UIImage imageNamed:@"camera"]];
+    if (_porygon.vertexCount != sender.value) {
+        _porygon.vertexCount = sender.value;
+        [self updatePorygon];
+    }
 }
 
 - (IBAction)generateSVG:(UIButton *)sender {
     NSString *svgString = [_porygon generateSVG];
     NSData *svgData = [svgString dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *filePath = [[NSTemporaryDirectory() stringByAppendingString:[[NSUUID UUID] UUIDString]] stringByAppendingPathExtension:@"svg"];
-    [svgData writeToFile:filePath atomically:YES];
+    NSURL *filePath = [NSURL fileURLWithPath:[[NSTemporaryDirectory() stringByAppendingString:[[NSUUID UUID] UUIDString]] stringByAppendingPathExtension:@"svg"]];
+    [svgData writeToURL:filePath atomically:YES];
+    
+    NSArray *objectsToShare = @[filePath];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
+
+- (IBAction)getImageFromGallery:(UIButton *)sender {
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePickerController.delegate = self;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    //You can retrieve the actual UIImage
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    _currentImage = image;
+    [self updatePorygon];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 
