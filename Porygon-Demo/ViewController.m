@@ -26,13 +26,21 @@
 
 #import "ViewController.h"
 #import "DVSPorygon.h"
+#import "CenterScrollView.h"
+#import "UIImage+Cropping.h"
+
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet CenterScrollView *scrollView;
 @property (nonatomic) DVSPorygon *porygon;
 @property (nonatomic) UIImage *currentImage;
+@property (weak, nonatomic) IBOutlet UIButton *cropButton;
 
 @property (nonatomic) NSOperationQueue *operationQueue;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 
 @end
 
@@ -46,9 +54,17 @@
     _slider.maximumValue = DVS_MAX_VERTEX_COUNT;
     _slider.value = _porygon.vertexCount;
     
+    _scrollView.minimumZoomScale = 1;
+    _scrollView.maximumZoomScale = 3;
+    [_scrollView setContentSize:_imageView.frame.size];
+    
     _operationQueue = [[NSOperationQueue alloc] init];
     [_operationQueue setMaxConcurrentOperationCount:1];
     self.currentImage = [UIImage imageNamed:@"camera"];
+    self.imageView.image = self.currentImage;
+    [self updateImageConstraints];
+    
+    [_cropButton setHidden:YES];
     
     [self updatePorygon];
 }
@@ -60,6 +76,7 @@
         UIImage *resultImage = [weakSelf.porygon lowPolyWithImage:weakSelf.currentImage];
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.imageView.image = resultImage;
+            [weakSelf updateImageConstraints];
         });
     }];
     [_operationQueue addOperation:operation];
@@ -99,51 +116,50 @@
 }
 
 - (void)setCurrentImage:(UIImage *)currentImage {
-    _currentImage = [self compressImage: currentImage];
+    
+    CIImage *coreImage = [[CIImage alloc] initWithImage:currentImage];
+    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone"];
+    [filter setValue:coreImage forKey:kCIInputImageKey];
+    [filter setValue:@0.5 forKey:kCIInputIntensityKey];
+    
+    EAGLContext *openGLContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
+    CIContext *context = [CIContext contextWithEAGLContext:openGLContext];
+    
+    CIImage *outputImage = [filter valueForKey:kCIOutputImageKey];
+    CGImageRef cgImageResult = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    UIImage *resultImage = [UIImage imageWithCGImage:cgImageResult];
+    
+    _currentImage = [resultImage compressImage];
 }
 
--(UIImage *)compressImage:(UIImage *)image{
+
+- (IBAction)cropImage:(UIButton *)sender {
+    CGFloat scale = 1 / _scrollView.zoomScale;
+    CGRect visibleRect = CGRectMake(_scrollView.contentOffset.x * scale, _scrollView.contentOffset.y * scale, _scrollView.bounds.size.width * scale, _scrollView.bounds.size.height * scale);
+    CGImageRef ref = CGImageCreateWithImageInRect(_imageView.image.CGImage, visibleRect);
+    UIImage *croppedImage = [UIImage imageWithCGImage:ref];
     
-    NSData *imgData = UIImageJPEGRepresentation(image, 1); //1 it represents the quality of the image.
-    NSLog(@"Size of Image(bytes):%ld",(unsigned long)[imgData length]);
-    
-    float actualHeight = image.size.height;
-    float actualWidth = image.size.width;
-    float maxHeight = 600.0;
-    float maxWidth = 800.0;
-    float imgRatio = actualWidth/actualHeight;
-    float maxRatio = maxWidth/maxHeight;
-    float compressionQuality = 0.5;//50 percent compression
-    
-    if (actualHeight > maxHeight || actualWidth > maxWidth){
-        if(imgRatio < maxRatio){
-            //adjust width according to maxHeight
-            imgRatio = maxHeight / actualHeight;
-            actualWidth = imgRatio * actualWidth;
-            actualHeight = maxHeight;
-        }
-        else if(imgRatio > maxRatio){
-            //adjust height according to maxWidth
-            imgRatio = maxWidth / actualWidth;
-            actualHeight = imgRatio * actualHeight;
-            actualWidth = maxWidth;
-        }
-        else{
-            actualHeight = maxHeight;
-            actualWidth = maxWidth;
-        }
-    }
-    
-    CGRect rect = CGRectMake(0.0, 0.0, actualWidth, actualHeight);
-    UIGraphicsBeginImageContext(rect.size);
-    [image drawInRect:rect];
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    NSData *imageData = UIImageJPEGRepresentation(img, compressionQuality);
-    UIGraphicsEndImageContext();
-    
-    NSLog(@"Size of Image(bytes):%ld",(unsigned long)[imageData length]);
-    
-    return [UIImage imageWithData:imageData];
+    _currentImage = croppedImage;
+    _imageView.image = croppedImage;
+    [self updateImageConstraints];
+}
+
+-(void)updateImageConstraints {
+    _imageWidthConstraint.constant = _imageView.image.size.width;
+    _imageHeightConstraint.constant = _imageView.image.size.height;
+    CGFloat scaleHeight = _scrollView.frame.size.width / _imageView.image.size.width;
+    CGFloat scaleWidth = _scrollView.frame.size.height / _imageView.image.size.height;
+    _scrollView.minimumZoomScale = MAX(scaleWidth, scaleHeight);
+    _scrollView.zoomScale = MAX(scaleWidth, scaleHeight);
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.imageView;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    [_cropButton setHidden:scrollView.zoomScale <= _scrollView.minimumZoomScale];
 }
 
 @end
