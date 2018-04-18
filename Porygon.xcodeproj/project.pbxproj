@@ -12,8 +12,8 @@
 		2BD1825A1EED92BA00271843 /* Porygon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD182031EED8CF200271843 /* Porygon.framework */; };
 		2BD182621EED93E600271843 /* delaunay.c in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182601EED93E600271843 /* delaunay.c */; };
 		2BD182631EED93E600271843 /* delaunay.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182611EED93E600271843 /* delaunay.h */; };
-		2BD182691EEE35E900271843 /* UIImage+DVSPixel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182671EEE35E900271843 /* UIImage+DVSPixel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2BD1826A1EEE35E900271843 /* UIImage+DVSPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182681EEE35E900271843 /* UIImage+DVSPixel.m */; };
+		2BD182691EEE35E900271843 /* SVGImage+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182671EEE35E900271843 /* SVGImage+Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BD1826A1EEE35E900271843 /* SVGImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182681EEE35E900271843 /* SVGImage+Extensions.m */; };
 		2BD1826D1EEE37D200271843 /* DVSPorygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD1826B1EEE37D200271843 /* DVSPorygon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2BD182701EEE42C200271843 /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1826F1EEE42C200271843 /* camera.jpg */; };
 		2BD182791EEE454200271843 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182781EEE454200271843 /* main.m */; };
@@ -87,8 +87,8 @@
 		2BD182591EED92BA00271843 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BD182601EED93E600271843 /* delaunay.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = delaunay.c; sourceTree = "<group>"; };
 		2BD182611EED93E600271843 /* delaunay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delaunay.h; sourceTree = "<group>"; };
-		2BD182671EEE35E900271843 /* UIImage+DVSPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DVSPixel.h"; sourceTree = "<group>"; };
-		2BD182681EEE35E900271843 /* UIImage+DVSPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DVSPixel.m"; sourceTree = "<group>"; };
+		2BD182671EEE35E900271843 /* SVGImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVGImage+Extensions.h"; sourceTree = "<group>"; };
+		2BD182681EEE35E900271843 /* SVGImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SVGImage+Extensions.m"; sourceTree = "<group>"; };
 		2BD1826B1EEE37D200271843 /* DVSPorygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSPorygon.h; sourceTree = "<group>"; };
 		2BD1826C1EEE37D200271843 /* DVSPorygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPorygon.m; sourceTree = "<group>"; };
 		2BD1826F1EEE42C200271843 /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = camera.jpg; sourceTree = "<group>"; };
@@ -327,8 +327,8 @@
 			children = (
 				2BD182601EED93E600271843 /* delaunay.c */,
 				2BD182611EED93E600271843 /* delaunay.h */,
-				2BD182671EEE35E900271843 /* UIImage+DVSPixel.h */,
-				2BD182681EEE35E900271843 /* UIImage+DVSPixel.m */,
+				2BD182671EEE35E900271843 /* SVGImage+Extensions.h */,
+				2BD182681EEE35E900271843 /* SVGImage+Extensions.m */,
 				2BD1826B1EEE37D200271843 /* DVSPorygon.h */,
 				2BD1826C1EEE37D200271843 /* DVSPorygon.m */,
 				2BD182131EED8F3500271843 /* Info.plist */,
@@ -616,7 +616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BD1826D1EEE37D200271843 /* DVSPorygon.h in Headers */,
-				2BD182691EEE35E900271843 /* UIImage+DVSPixel.h in Headers */,
+				2BD182691EEE35E900271843 /* SVGImage+Extensions.h in Headers */,
 				EF1345D520877E020045FDAF /* PorygonPortability.h in Headers */,
 				EF83F03720874254004BF43F /* DVSPoint.h in Headers */,
 				2BD182631EED93E600271843 /* delaunay.h in Headers */,
@@ -825,7 +825,7 @@
 			files = (
 				EF83F039208742EF004BF43F /* DVSPoint.m in Sources */,
 				EF94CF0D2080941800A0C208 /* GPPolygonSet.m in Sources */,
-				2BD1826A1EEE35E900271843 /* UIImage+DVSPixel.m in Sources */,
+				2BD1826A1EEE35E900271843 /* SVGImage+Extensions.m in Sources */,
 				EF026B6D2074B2AA00E0754C /* SVGPolyline.m in Sources */,
 				EF83F038208742D8004BF43F /* DVSPorygon.m in Sources */,
 				2BD182621EED93E600271843 /* delaunay.c in Sources */,

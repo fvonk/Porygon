@@ -27,6 +27,7 @@
 #import "ViewController.h"
 #import "DVSPorygon.h"
 #import "UIImage+Cropping.h"
+#import "SVGImage+Extensions.h"
 @import YPImagePicker;
 
 @interface ViewController ()

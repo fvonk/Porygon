@@ -30,7 +30,7 @@
 FOUNDATION_EXPORT double PorygonVersionNumber;
 FOUNDATION_EXPORT const unsigned char PorygonVersionString[];
 #import <Porygon/DVSPorygon.h>
-#import <Porygon/UIImage+DVSPixel.h>
+#import <Porygon/SVGImage+Extensions.h>
 #else
 #import "DVSPorygon.h"
 #import "UIImage+DVSPixel"

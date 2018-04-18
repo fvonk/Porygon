@@ -37,7 +37,7 @@
 //    }
 
 #import "DVSPorygon.h"
-#import "UIImage+DVSPixel.h"
+#import "SVGImage+Extensions.h"
 #import "SVGColor_Category.h"
 #include "delaunay.h"
 //#import "Poisson.hpp"

@@ -1,5 +1,5 @@
 //
-//  UIImage+DVSPixel.m
+//  UIImage+DVSPixel.h
 //  Porygon
 //
 //  Created by DevinShine on 2017/6/12.
@@ -24,31 +24,32 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "UIImage+DVSPixel.h"
+#import "PorygonPortability.h"
 
-@implementation SVGImage (DVSPixel)
-- (struct PixelData)pixelData {
-    CGImageRef imageRef = [self CGImage];
-    CGSize size = self.size;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    unsigned char *rawData = (unsigned char*) calloc(size.height * size.width * 4, sizeof(unsigned char));
-    NSUInteger bytesPerPixel = 4;
-    NSUInteger bytesPerRow = bytesPerPixel * size.width;
-    NSUInteger bitsPerComponent = 8;
-    CGContextRef context = CGBitmapContextCreate(rawData, size.width, size.height,
-                                                 bitsPerComponent, bytesPerRow, colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    CGColorSpaceRelease(colorSpace);
-    CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), imageRef);
-    CGContextRelease(context);
-    
-    struct PixelData pd;
-    pd.rawData = rawData;
-    pd.count = size.height * size.width * 4;
-    pd.height = size.height;
-    pd.width = size.width;
-    pd.endIndex = pd.count;
-    return pd;
-}
+struct PixelData {
+    unsigned char *rawData;
+    int count;
+    int width;
+    int height;
+    int endIndex;
+};
+
+@interface SVGImage (Extensions)
+
+- (struct PixelData)pixelData;
+
+-(SVGImage *)compressImage;
+
++ (SVGImage*)setBackgroundImageByColor:(UIColor *)backgroundColor withFrame:(CGRect )rect;
+
+
++(SVGImage *)changeWhiteColorTransparent: (SVGImage *)image;
+
++(SVGImage *)changeColorTo:(NSArray*) array Transparent: (SVGImage *)image;
+
+//resizing Stuff...
++ (SVGImage *)imageWithImage:(SVGImage *)image scaledToSize:(CGSize)newSize;
+
+
 @end
 
