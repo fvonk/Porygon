@@ -7,8 +7,8 @@
 //
 
 #import "UIImage+Cropping.h"
-
 #import "MagickWand.h"
+#import "PorygonPortability.h"
 
 @implementation UIImage (Cropping)
 

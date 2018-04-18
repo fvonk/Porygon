@@ -38,11 +38,12 @@
 
 #import "DVSPorygon.h"
 #import "UIImage+DVSPixel.h"
-#import "UIColor+UIColor_Category.h"
+#import "SVGColor_Category.h"
 #include "delaunay.h"
 //#import "Poisson.hpp"
 #import "DVSPoint.h"
 #import "GPPolygonSet.h"
+#import "PorygonPortability.h"
 
 #define NELEMS(x) (sizeof(x) / sizeof(x[0]))
 
@@ -173,7 +174,7 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
     return self;
 }
 
-- (UIImage *)lowPolyWithImage:(UIImage *)image {
+- (SVGImage *)lowPolyWithImage:(SVGImage *)image {
     if (!image) {
         return nil;
     }
@@ -344,7 +345,7 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
         }
     }
     
-    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    SVGImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     tri_delaunay2d_release(tri);

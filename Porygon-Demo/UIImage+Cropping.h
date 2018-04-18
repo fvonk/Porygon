@@ -6,24 +6,24 @@
 //  Copyright © 2018 DevinShine. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "PorygonPortability.h"
 
-@interface UIImage (Cropping)
+@interface SVGImage (Cropping)
 
-+ (UIImage *) convertImageToIndexed:(UIImage *)image noOfColors:(int)noOfColors withoutTransformation:(BOOL) noTransformation;
++ (SVGImage *) convertImageToIndexed:(SVGImage *)image noOfColors:(int)noOfColors withoutTransformation:(BOOL) noTransformation;
 
--(UIImage *)compressImage;
+-(SVGImage *)compressImage;
 
-+ (UIImage*)setBackgroundImageByColor:(UIColor *)backgroundColor withFrame:(CGRect )rect;
++ (SVGImage*)setBackgroundImageByColor:(UIColor *)backgroundColor withFrame:(CGRect )rect;
 
-+ (UIImage*) replaceColor:(UIColor*)color inImage:(UIImage*)image withTolerance:(float)tolerance;
++ (SVGImage*) replaceColor:(UIColor*)color inImage:(SVGImage*)image withTolerance:(float)tolerance;
 
-+(UIImage *)changeWhiteColorTransparent: (UIImage *)image;
++(SVGImage *)changeWhiteColorTransparent: (SVGImage *)image;
 
-+(UIImage *)changeColorTo:(NSArray*) array Transparent: (UIImage *)image;
++(SVGImage *)changeColorTo:(NSArray*) array Transparent: (SVGImage *)image;
 
 //resizing Stuff...
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
++ (SVGImage *)imageWithImage:(SVGImage *)image scaledToSize:(CGSize)newSize;
 
 
 

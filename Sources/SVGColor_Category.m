@@ -6,11 +6,11 @@
 //  Copyright © 2018 DevinShine. All rights reserved.
 //
 
-#import "UIColor+UIColor_Category.h"
+#import "SVGColor_Category.h"
 
-@implementation UIColor (UIColor_Category)
+@implementation SVGColor (SVGColor_Category)
 
-- (BOOL)colorEqualsToColor:(UIColor *)color2 withTolerance:(CGFloat)tolerance {
+- (BOOL)colorEqualsToColor:(SVGColor *)color2 withTolerance:(CGFloat)tolerance {
     CGFloat r1, g1, b1, r2, g2, b2, a1, a2;
     [self getRed:&r1 green:&g1 blue:&b1 alpha:&a1];
     [color2 getRed:&r2 green:&g2 blue:&b2 alpha:&a2];
@@ -31,12 +31,12 @@
     //    return NO;
 }
 
-- (UIColor *)getMiddleColorWithAnother:(UIColor *)color2 {
+- (SVGColor *)getMiddleColorWithAnother:(SVGColor *)color2 {
     CGFloat r1, g1, b1, r2, g2, b2, a1, a2;
     [self getRed:&r1 green:&g1 blue:&b1 alpha:&a1];
     [color2 getRed:&r2 green:&g2 blue:&b2 alpha:&a2];
     
-    return [UIColor colorWithRed:(r1+r2)/2.0f
+    return [SVGColor colorWithRed:(r1+r2)/2.0f
                            green:(g1+g2)/2.0f
                             blue:(b1+b2)/2.0f
                            alpha:(a1+a2)/2.0f];
@@ -52,12 +52,12 @@
     return hexString;
 }
 
-+(UIColor *)colorFromHexString:(NSString *)hexString {
++(SVGColor *)colorFromHexString:(NSString *)hexString {
     unsigned rgbValue = 0;
     NSScanner *scanner = [NSScanner scannerWithString:hexString];
     [scanner setScanLocation:1]; // bypass '#' character
     [scanner scanHexInt:&rgbValue];
-    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+    return [SVGColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
 
 

@@ -24,7 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "PorygonPortability.h"
 
 struct PixelData {
     unsigned char *rawData;
@@ -34,7 +34,7 @@ struct PixelData {
     int endIndex;
 };
 
-@interface UIImage (DVSPixel)
+@interface SVGImage (Extensions)
 
 - (struct PixelData)pixelData;
 

@@ -8,14 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		197015EF07074B99DEEC5536 /* Pods_Porygon_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20DB5877D70108C0DE6DC2D /* Pods_Porygon_Demo.framework */; };
-		2BD182161EED8F3500271843 /* Porygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182141EED8F3500271843 /* Porygon.h */; };
 		2BD182581EED92BA00271843 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182571EED92BA00271843 /* Tests.m */; };
 		2BD1825A1EED92BA00271843 /* Porygon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD182031EED8CF200271843 /* Porygon.framework */; };
 		2BD182621EED93E600271843 /* delaunay.c in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182601EED93E600271843 /* delaunay.c */; };
 		2BD182631EED93E600271843 /* delaunay.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182611EED93E600271843 /* delaunay.h */; };
-		2BD182691EEE35E900271843 /* UIImage+DVSPixel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182671EEE35E900271843 /* UIImage+DVSPixel.h */; };
+		2BD182691EEE35E900271843 /* UIImage+DVSPixel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182671EEE35E900271843 /* UIImage+DVSPixel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2BD1826A1EEE35E900271843 /* UIImage+DVSPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182681EEE35E900271843 /* UIImage+DVSPixel.m */; };
-		2BD1826D1EEE37D200271843 /* DVSPorygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD1826B1EEE37D200271843 /* DVSPorygon.h */; };
+		2BD1826D1EEE37D200271843 /* DVSPorygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD1826B1EEE37D200271843 /* DVSPorygon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2BD182701EEE42C200271843 /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1826F1EEE42C200271843 /* camera.jpg */; };
 		2BD182791EEE454200271843 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182781EEE454200271843 /* main.m */; };
 		2BD1827C1EEE454200271843 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1827B1EEE454200271843 /* AppDelegate.m */; };
@@ -25,12 +24,14 @@
 		2BD1830C1EF2465100271843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD1830B1EF2465100271843 /* UIKit.framework */; };
 		2BD1830E1EF2465600271843 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD1830D1EF2465600271843 /* CoreGraphics.framework */; };
 		EF026B6D2074B2AA00E0754C /* SVGPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF026B6B2074B2A900E0754C /* SVGPolyline.m */; };
-		EF026B6E2074B2AA00E0754C /* SVGPolyline.h in Headers */ = {isa = PBXBuildFile; fileRef = EF026B6C2074B2AA00E0754C /* SVGPolyline.h */; };
+		EF026B6E2074B2AA00E0754C /* SVGPolyline.h in Headers */ = {isa = PBXBuildFile; fileRef = EF026B6C2074B2AA00E0754C /* SVGPolyline.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF026B912074C0B800E0754C /* Porygon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD182031EED8CF200271843 /* Porygon.framework */; };
 		EF026B922074C0B800E0754C /* Porygon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD182031EED8CF200271843 /* Porygon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EF83F02C2085F7C5004BF43F /* UIColor+UIColor_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02B2085F7C5004BF43F /* UIColor+UIColor_Category.m */; };
-		EF83F02E2085F842004BF43F /* SVGHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02D2085F842004BF43F /* SVGHandler.swift */; };
-		EF83F0302085F887004BF43F /* CGPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02F2085F887004BF43F /* CGPath+Extension.swift */; };
+		EF1345D520877E020045FDAF /* PorygonPortability.h in Headers */ = {isa = PBXBuildFile; fileRef = EF1345D420877DB30045FDAF /* PorygonPortability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF1345D8208782130045FDAF /* SVGHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02D2085F842004BF43F /* SVGHandler.swift */; };
+		EF1345D9208782130045FDAF /* CGPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02F2085F887004BF43F /* CGPath+Extension.swift */; };
+		EF1345DA208783380045FDAF /* Porygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182141EED8F3500271843 /* Porygon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF83F02C2085F7C5004BF43F /* SVGColor_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02B2085F7C5004BF43F /* SVGColor_Category.m */; };
 		EF83F03720874254004BF43F /* DVSPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = EF83F03420874231004BF43F /* DVSPoint.h */; };
 		EF83F038208742D8004BF43F /* DVSPorygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1826C1EEE37D200271843 /* DVSPorygon.m */; };
 		EF83F039208742EF004BF43F /* DVSPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F03520874231004BF43F /* DVSPoint.m */; };
@@ -111,8 +112,9 @@
 		A20DB5877D70108C0DE6DC2D /* Pods_Porygon_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Porygon_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF026B6B2074B2A900E0754C /* SVGPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGPolyline.m; sourceTree = "<group>"; };
 		EF026B6C2074B2AA00E0754C /* SVGPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGPolyline.h; sourceTree = "<group>"; };
-		EF83F02A2085F7C5004BF43F /* UIColor+UIColor_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColor_Category.h"; sourceTree = "<group>"; };
-		EF83F02B2085F7C5004BF43F /* UIColor+UIColor_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColor_Category.m"; sourceTree = "<group>"; };
+		EF1345D420877DB30045FDAF /* PorygonPortability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PorygonPortability.h; sourceTree = "<group>"; };
+		EF83F02A2085F7C5004BF43F /* SVGColor_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGColor_Category.h; sourceTree = "<group>"; };
+		EF83F02B2085F7C5004BF43F /* SVGColor_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGColor_Category.m; sourceTree = "<group>"; };
 		EF83F02D2085F842004BF43F /* SVGHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGHandler.swift; sourceTree = "<group>"; };
 		EF83F02F2085F887004BF43F /* CGPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPath+Extension.swift"; sourceTree = "<group>"; };
 		EF83F03420874231004BF43F /* DVSPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVSPoint.h; sourceTree = "<group>"; };
@@ -337,10 +339,13 @@
 				EF026B6B2074B2A900E0754C /* SVGPolyline.m */,
 				EF94CF092080938F00A0C208 /* GPPolygonSet.h */,
 				EF94CF072080938200A0C208 /* GPPolygonSet.m */,
-				EF83F02A2085F7C5004BF43F /* UIColor+UIColor_Category.h */,
-				EF83F02B2085F7C5004BF43F /* UIColor+UIColor_Category.m */,
+				EF83F02A2085F7C5004BF43F /* SVGColor_Category.h */,
+				EF83F02B2085F7C5004BF43F /* SVGColor_Category.m */,
 				EF83F03420874231004BF43F /* DVSPoint.h */,
 				EF83F03520874231004BF43F /* DVSPoint.m */,
+				EF1345D420877DB30045FDAF /* PorygonPortability.h */,
+				EF83F02D2085F842004BF43F /* SVGHandler.swift */,
+				EF83F02F2085F887004BF43F /* CGPath+Extension.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -358,15 +363,13 @@
 		2BD182761EEE454200271843 /* Porygon-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				EFB71A7020764A0E006934BC /* UIImage+Cropping.h */,
+				EFB71A7120764A0E006934BC /* UIImage+Cropping.m */,
 				2BD1827A1EEE454200271843 /* AppDelegate.h */,
 				2BD1827B1EEE454200271843 /* AppDelegate.m */,
 				2BD1827D1EEE454200271843 /* ViewController.h */,
 				2BD1827E1EEE454200271843 /* ViewController.m */,
 				EFB71A7420765A38006934BC /* ImageController.swift */,
-				EFB71A7020764A0E006934BC /* UIImage+Cropping.h */,
-				EFB71A7120764A0E006934BC /* UIImage+Cropping.m */,
-				EF83F02D2085F842004BF43F /* SVGHandler.swift */,
-				EF83F02F2085F887004BF43F /* CGPath+Extension.swift */,
 				EFB71B62207B7026006934BC /* imageMagick */,
 				2BD182831EEE454200271843 /* Assets.xcassets */,
 				2BD182851EEE454200271843 /* LaunchScreen.storyboard */,
@@ -602,11 +605,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BD182161EED8F3500271843 /* Porygon.h in Headers */,
 				2BD1826D1EEE37D200271843 /* DVSPorygon.h in Headers */,
 				2BD182691EEE35E900271843 /* UIImage+DVSPixel.h in Headers */,
+				EF1345D520877E020045FDAF /* PorygonPortability.h in Headers */,
 				EF83F03720874254004BF43F /* DVSPoint.h in Headers */,
 				2BD182631EED93E600271843 /* delaunay.h in Headers */,
+				EF1345DA208783380045FDAF /* Porygon.h in Headers */,
 				EF026B6E2074B2AA00E0754C /* SVGPolyline.h in Headers */,
 				EF94CF0C2080941800A0C208 /* GPPolygonSet.h in Headers */,
 			);
@@ -809,10 +813,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1345D9208782130045FDAF /* CGPath+Extension.swift in Sources */,
 				EF83F039208742EF004BF43F /* DVSPoint.m in Sources */,
 				EF94CF0D2080941800A0C208 /* GPPolygonSet.m in Sources */,
 				2BD1826A1EEE35E900271843 /* UIImage+DVSPixel.m in Sources */,
 				EF026B6D2074B2AA00E0754C /* SVGPolyline.m in Sources */,
+				EF1345D8208782130045FDAF /* SVGHandler.swift in Sources */,
 				EF83F038208742D8004BF43F /* DVSPorygon.m in Sources */,
 				2BD182621EED93E600271843 /* delaunay.c in Sources */,
 			);
@@ -830,12 +836,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF83F0302085F887004BF43F /* CGPath+Extension.swift in Sources */,
 				2BD1827F1EEE454200271843 /* ViewController.m in Sources */,
 				EFB71A7220764A0E006934BC /* UIImage+Cropping.m in Sources */,
 				2BD1827C1EEE454200271843 /* AppDelegate.m in Sources */,
-				EF83F02C2085F7C5004BF43F /* UIColor+UIColor_Category.m in Sources */,
-				EF83F02E2085F842004BF43F /* SVGHandler.swift in Sources */,
+				EF83F02C2085F7C5004BF43F /* SVGColor_Category.m in Sources */,
 				2BD182791EEE454200271843 /* main.m in Sources */,
 				EFB71A7520765A38006934BC /* ImageController.swift in Sources */,
 			);
@@ -993,6 +997,7 @@
 		2BD1820C1EED8CF200271843 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
@@ -1008,12 +1013,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		2BD1820D1EED8CF200271843 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
@@ -1029,12 +1036,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		2BD1825E1EED92BA00271843 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1047,6 +1056,7 @@
 		2BD1825F1EED92BA00271843 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1060,7 +1070,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C7C8898EC03C609CC98F58C /* Pods-Porygon-Demo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1090,7 +1102,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BB7F798EAF65A7A65185DAF /* Pods-Porygon-Demo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

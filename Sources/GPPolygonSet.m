@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UIKit/UIKit.h"
+#import "PorygonPortability.h"
 #import "GPPolygonSet.h"
 
 @implementation GPTriangle

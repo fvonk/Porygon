@@ -26,7 +26,7 @@
 
 #import "UIImage+DVSPixel.h"
 
-@implementation UIImage (DVSPixel)
+@implementation SVGImage (DVSPixel)
 - (struct PixelData)pixelData {
     CGImageRef imageRef = [self CGImage];
     CGSize size = self.size;
