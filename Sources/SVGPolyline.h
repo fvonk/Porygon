@@ -15,7 +15,9 @@
 @property (nonatomic, readonly) NSString *hexColor;
 @property (nonatomic, readonly) NSString *identifier;
 
-- (instancetype)initWithIdentifier:(NSString *)identifier withHexColor:(NSString *)hexColor withPoints:(NSArray<NSValue *> *)points;
+@property (nonatomic, assign) BOOL merged;
+
+- (_Nonnull instancetype)initWithIdentifier:(NSString * _Nonnull)identifier withHexColor:(NSString * _Nonnull)hexColor withPoints:(NSArray<NSValue *> * _Nonnull)points;
 
 @end
 

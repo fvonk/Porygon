@@ -35,11 +35,15 @@ UIKIT_EXTERN int const DVS_MIN_VERTEX_COUNT;
 @property (nonatomic) int randomCount;
 @property (nonatomic) int vertexCount;
 @property (nonatomic) BOOL isWireframe;
-// default use Poisson Disk Sampling
 @property (nonatomic) NSMutableArray<SVGPolyline *> *currentPolylines;
 
 // default use Poisson Disk Sampling
-@property (nonatomic) BOOL isPoisson;
+@property (nonatomic) float imageWidth;
+@property (nonatomic) float imageHeight;
+@property (nonatomic) float colorTolerance;
+@property (nonatomic) float minSquare;
+@property (nonatomic) float maxSquare;
+
 - (UIImage *)lowPolyWithImage:(UIImage *) image;
-- (NSString *)generateSVG;
+-(void)generateSVG:(void (^)(double))progress andCompletion:(void (^)(NSString *, NSString *))completion;
 @end

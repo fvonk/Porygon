@@ -38,49 +38,26 @@
 
 #import "DVSPorygon.h"
 #import "UIImage+DVSPixel.h"
+#import "UIColor+UIColor_Category.h"
 #include "delaunay.h"
 //#import "Poisson.hpp"
+#import "DVSPoint.h"
+#import "GPPolygonSet.h"
 
 #define NELEMS(x) (sizeof(x) / sizeof(x[0]))
+
+#define UIColorFromRGB(rgbValue) \
+    [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                    green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
+                    blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
+                    alpha:1.0]
 
 int const DVS_GRAY_LIMIT_VALUE = 40;
 int const DVS_DEFAULT_RANDOM_COUNT = 500;
 int const DVS_DEFAULT_VERTEX_COUNT = 500;
-int const DVS_MAX_VERTEX_COUNT = 1000;
+int const DVS_MAX_VERTEX_COUNT = 5000;
 int const DVS_MIN_VERTEX_COUNT = 100;
 
-@interface DVSPoint : NSObject
-@property (nonatomic) int x;
-@property (nonatomic) int y;
-- (instancetype)initWithX:(int)x
-                        y:(int)y;
-@end
-
-@implementation DVSPoint
-
-- (instancetype)initWithX:(int)x
-                        y:(int)y {
-    self = [super init];
-    if (self) {
-        _x = x;
-        _y = y;
-    }
-    return self;
-}
-
-- (BOOL)isEqual:(id)object {
-    return [object isKindOfClass:[DVSPoint class]] &&
-           self.x == ((DVSPoint *)object).x &&
-           self.y == ((DVSPoint *)object).y;
-}
-
-- (NSUInteger)hash {
-    int times = 1;
-    while (times <= _y)
-        times *= 10;
-    return _x * times + _y;
-}
-@end
 
 @implementation DVSPorygon
 
@@ -189,8 +166,9 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
         _randomCount = DVS_DEFAULT_RANDOM_COUNT;
         _vertexCount = DVS_DEFAULT_VERTEX_COUNT;
         _isWireframe = false;
-        _isPoisson = true;
         _currentPolylines = [[NSMutableArray alloc] init];
+        _minSquare = 0.0005;
+        _maxSquare = 0.005;
     }
     return self;
 }
@@ -205,6 +183,9 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
     unsigned char *pixel = pd.rawData;
     int w = pd.width;
     int h = pd.height;
+    
+    self.imageWidth = (float)w;
+    self.imageHeight = (float)h;
     
     unsigned char *grayPixel = (unsigned char *)calloc(w * h * 4, sizeof(unsigned char));
     unsigned char *sobelPixel = (unsigned char *)calloc(w * h * 4, sizeof(unsigned char));
@@ -326,24 +307,29 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
         float g = get_color_i(pixel, w, h, x, y, 1) / 255.0;
         float b = get_color_i(pixel, w, h, x, y, 2) / 255.0;
         float a = get_color_i(pixel, w, h, x, y, 3) / 255.0;
+        CGFloat r2, g2, b2, a2;
         
         NSString *identifier = [NSString stringWithFormat:@"Fill-%d", i];
-        NSString *hexColor = [self hexStringForColor:[UIColor colorWithRed:r green:g blue:b alpha:a]];
+        UIColor *realColor = [UIColor colorWithRed:r green:g blue:b alpha:a];
+        NSString *hexColor = [realColor hexStringForColor];
         SVGPolyline *polyline = [[SVGPolyline alloc] initWithIdentifier:identifier withHexColor:hexColor withPoints:@[
                                                                                                                       [NSValue valueWithCGPoint:CGPointMake(tri->points[indice_1].x, tri->points[indice_1].y)],
                                                                                                                       [NSValue valueWithCGPoint:CGPointMake(tri->points[indice_2].x, tri->points[indice_2].y)],
                                                                                                                       [NSValue valueWithCGPoint:CGPointMake(tri->points[indice_3].x, tri->points[indice_3].y)]
                                                                                                                       ]];
+        [realColor getRed:&r2 green:&g2 blue:&b2 alpha:&a2];
+        
         [_currentPolylines addObject:polyline];
         
-        CGContextSetRGBFillColor(context, r, g, b, a);
-        CGContextSetRGBStrokeColor(context, r, g, b, a);
+        CGContextSetRGBFillColor(context, r2, g2, b2, a2);
+        CGContextSetRGBStrokeColor(context, r2, g2, b2, a2);
         CGContextSetLineWidth(context, thickness);
         CGContextMoveToPoint(context, x1, y1);
         CGContextAddLineToPoint(context, x2, y2);
         CGContextAddLineToPoint(context, x3, y3);
         CGContextAddLineToPoint(context, x1, y1);
         CGContextDrawPath(context, kCGPathFillStroke);
+        CGContextDrawPath(context, kCGPathFill);
         
         
         // draw wireframe
@@ -371,16 +357,7 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
     return outputImage;
 }
 
-- (NSString *)hexStringForColor:(UIColor *)color {
-    const CGFloat *components = CGColorGetComponents(color.CGColor);
-    CGFloat r = components[0];
-    CGFloat g = components[1];
-    CGFloat b = components[2];
-    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
-    return hexString;
-}
-
--(NSString *)generateSVG
+-(void)generateSVG:(void (^)(double))progress andCompletion:(void (^)(NSString *, NSString *))completion
 {
     NSString *title = [[NSProcessInfo processInfo] globallyUniqueString];
     NSMutableString* svgAsString = [NSMutableString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
@@ -390,25 +367,214 @@ int get_y(unsigned char *pixel, int w, int h, int x, int y) {
                                     <defs></defs> \n\
                                     <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> \n\
                                     <g id=\"Puzzle\" fill-rule=\"nonzero\">\n", title];
+
     
-    CGFloat maxWidth = 0.0;
-    CGFloat maxHeight = 0.0;
-    for (SVGPolyline *polyline in _currentPolylines) {
-        NSMutableString *pointsString = [[NSMutableString alloc] init];
-        for (NSValue *point in polyline.points) {
-            [pointsString appendFormat:@"%f %f ", point.CGPointValue.x, point.CGPointValue.y];
-            if (point.CGPointValue.x > maxWidth)
-                maxWidth = point.CGPointValue.x;
-            if (point.CGPointValue.y > maxHeight)
-                maxHeight = point.CGPointValue.y;
+    [_currentPolylines sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [[(SVGPolyline *)obj1 hexColor] compare:[(SVGPolyline *)obj2 hexColor]];
+    }];
+    NSMutableArray<NSMutableArray *> *sortedPolylines = [[NSMutableArray alloc] initWithCapacity:256];
+    
+    NSString *current = [_currentPolylines[0] hexColor];
+    NSMutableArray<SVGPolyline *> *colorArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < _currentPolylines.count; i++) {
+        [_currentPolylines[i] setMerged:NO];
+        if ([[UIColor colorFromHexString:current] colorEqualsToColor:[UIColor colorFromHexString:[_currentPolylines[i] hexColor]] withTolerance:_colorTolerance] == YES) {
+            [colorArray addObject:_currentPolylines[i]];
+        } else {
+            if ([colorArray count] > 0)
+                [sortedPolylines addObject:colorArray];
+            
+            colorArray = [[NSMutableArray alloc] init];
+            [colorArray addObject:_currentPolylines[i]];
+            current = [_currentPolylines[i] hexColor];
         }
-        [svgAsString appendFormat:@"<polyline id=\"%@\" fill=\"#%@\" points=\"%@\"></polyline>\n", [polyline identifier], [polyline hexColor], pointsString];
     }
-    [svgAsString replaceOccurrencesOfString:@"maxWidth" withString:[NSString stringWithFormat:@"%f", maxWidth] options:NSLiteralSearch range:NSMakeRange(0, svgAsString.length)];
-    [svgAsString replaceOccurrencesOfString:@"maxHeight" withString:[NSString stringWithFormat:@"%f", maxHeight] options:NSLiteralSearch range:NSMakeRange(0, svgAsString.length)];
+    if ([colorArray count] > 0)
+        [sortedPolylines addObject:colorArray];
+    
+    
+    NSLog(@"color groups %lu", sortedPolylines.count);
+    
+    const float minArea = self.imageWidth * self.imageHeight * self.minSquare;//0.0005;
+    const float maxArea = self.imageWidth * self.imageHeight * self.maxSquare;//0.005;
+    
+    NSMutableArray<GPPolygonSet *> *gpPolygonSets = [[NSMutableArray alloc] init];
+    
+    int colorGroups = 0;
+    BOOL areaLimitExceeded = NO;
+    for (NSArray<SVGPolyline *> *oneColorArray in sortedPolylines) {
+        colorGroups++;
+        for (int i = 0; i < oneColorArray.count; i++) {
+            if (areaLimitExceeded) {
+                areaLimitExceeded = NO;
+                i--;
+            }
+            
+            SVGPolyline *polyline = oneColorArray[i];
+            if ([polyline merged])
+                continue;
+            
+            GPPolygonSet *gpPolygonSet = [[GPPolygonSet alloc] init];
+            [gpPolygonSet setIdentifier:polyline.identifier];
+            [gpPolygonSet setHexColor:polyline.hexColor];
+            
+            GPTriangle *gpTriangle = [[GPTriangle alloc] init];
+            [gpTriangle setHexColor:polyline.hexColor];
+            [gpTriangle setIdentifier:polyline.identifier];
+            NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:polyline.points];
+            [[gpTriangle points] addObjectsFromArray:[orderedSet array]];
+            
+            [[gpPolygonSet allTriangles] addObject:gpTriangle];
+            [gpPolygonSet setAllArea:[gpPolygonSet allArea] + [gpTriangle area]];
+            [[gpPolygonSet allPoints] addObjectsFromArray:polyline.points];
+            
+            
+            for (int j = 0; j < oneColorArray.count; j++) {
+                if ([oneColorArray[j] merged] || j == i)
+                    continue;
+                
+                @autoreleasepool {
+                    SVGPolyline *polyline2 = oneColorArray[j];
+                    
+                    int count = 0;
+                    NSSet *polylinePointsSet = [gpPolygonSet allPoints];
+                    
+                    for (NSValue *point in polyline2.points) {
+                        if ([polylinePointsSet containsObject:point]) {
+                            count++;
+                        
+                            if (count > 1) {
+                                [oneColorArray[j] setMerged:YES];
+                                
+                                GPTriangle *gpTriangle = [[GPTriangle alloc] init];
+                                [gpTriangle setHexColor:polyline2.hexColor];
+                                [gpTriangle setIdentifier:polyline2.identifier];
+                                NSOrderedSet *orderedSet = [NSOrderedSet orderedSetWithArray:polyline2.points];
+                                [[gpTriangle points] addObjectsFromArray:[orderedSet array]];
+                                
+                                [[gpPolygonSet allTriangles] addObject:gpTriangle];
+                                [gpPolygonSet setAllArea:[gpPolygonSet allArea] + [gpTriangle area]];
+                                [[gpPolygonSet allPoints] addObjectsFromArray:polyline2.points];
+                                
+                                if ([gpPolygonSet allArea] >= maxArea) {
+                                    areaLimitExceeded = YES;
+                                    break;
+                                } else {
+                                    j = 0;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (areaLimitExceeded)
+                        break;
+                }
+            }
+            [polyline setMerged:YES];
+            
+            [gpPolygonSets addObject:gpPolygonSet];
+        }
+        progress(double(colorGroups) / double(sortedPolylines.count) / 3.0);
+    }
+    
+    for (int i = 0; i < gpPolygonSets.count; i++) {
+        if ([[gpPolygonSets[i] allTriangles] count] == 1 && [gpPolygonSets[i] allArea] < maxArea) {
+            GPTriangle *gpTriangle = [[gpPolygonSets[i] allTriangles] firstObject];
+
+            for (int j = 0; j < gpPolygonSets.count; j++) {
+                if (([gpPolygonSets[j] merged] == YES && [[gpPolygonSets[j] allTriangles] count] == 1) || i == j)
+                    continue;
+
+                if (([[gpPolygonSets[j] allPoints] containsObject:gpTriangle.points[0]] && [[gpPolygonSets[j] allPoints] containsObject:gpTriangle.points[1]]) ||
+                    ([[gpPolygonSets[j] allPoints] containsObject:gpTriangle.points[0]] && [[gpPolygonSets[j] allPoints] containsObject:gpTriangle.points[2]]) ||
+                    ([[gpPolygonSets[j] allPoints] containsObject:gpTriangle.points[1]] && [[gpPolygonSets[j] allPoints] containsObject:gpTriangle.points[2]]))
+                {
+                    [[gpPolygonSets[j] allTriangles] addObject:gpTriangle];
+                    [[gpPolygonSets[j] allPoints] addObjectsFromArray:gpTriangle.points];
+                    [gpPolygonSets[j] setAllArea:[gpPolygonSets[j] allArea] + [gpTriangle area]];
+                    [gpPolygonSets[i] setMerged:YES];
+                    break;
+                }
+            }
+        }
+
+        progress(0.33 + double(i) / double(gpPolygonSets.count) / 3.0);
+    }
+
+    [gpPolygonSets filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
+        BOOL merged = [(GPPolygonSet *)object merged];
+        [(GPPolygonSet *)object setMerged:NO];
+        return !merged;
+    }]];
+
+    for (int i = 0; i < gpPolygonSets.count; i++) {
+        if ([gpPolygonSets[i] merged] == NO && [gpPolygonSets[i] allArea] <= minArea) {
+
+            for (int j = 0; j < gpPolygonSets.count; j++) {
+                if ([gpPolygonSets[j] merged] == YES || i == j)
+                    continue;
+
+                NSMutableSet<NSValue *> *gpPolygonSetPointsSet = [[gpPolygonSets[i] allPoints] mutableCopy];
+                [gpPolygonSetPointsSet intersectSet:[gpPolygonSets[j] allPoints]];
+                if ([gpPolygonSetPointsSet count] > 1) {
+
+                    [[gpPolygonSets[j] allTriangles] addObjectsFromArray:[gpPolygonSets[i] allTriangles]];
+                    [[gpPolygonSets[j] allPoints] addObjectsFromArray:[NSArray arrayWithArray:[[gpPolygonSets[i] allPoints] allObjects]]];
+                    [gpPolygonSets[j] setAllArea:[gpPolygonSets[j] allArea] + [gpPolygonSets[i] allArea]];
+                    [gpPolygonSets[i] setMerged:YES];
+                    break;
+                }
+            }
+        }
+
+        progress(0.67 + double(i) / double(gpPolygonSets.count) / 3.0);
+    }
+
+    __block float test = 0.0;
+    [gpPolygonSets filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
+        if ([(GPPolygonSet *)object merged] == NO)
+            test += [(GPPolygonSet *)object allArea];
+        return [(GPPolygonSet *)object merged] == NO;
+    }]];
+    NSLog(@"groups2 %lu %f", gpPolygonSets.count, test);
+    
+    //DEBUG
+    [gpPolygonSets enumerateObjectsUsingBlock:^(GPPolygonSet * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([(GPPolygonSet *)obj allArea] < minArea)
+            abort();
+    }];
+    
+    NSMutableSet *stringsSet = [[NSMutableSet alloc] init];//DEBUG
+    for (GPPolygonSet *gpPolygonSet in gpPolygonSets) {
+        [svgAsString appendFormat:@"<g id=\"%.0f\">\n", gpPolygonSet.allArea];
+        
+        for (GPTriangle *gpTriangle in [gpPolygonSet allTriangles]) {
+            NSMutableString *pointsString = [[NSMutableString alloc] init];
+            for (NSValue *point in gpTriangle.points) {
+                [pointsString appendFormat:@"%.0f %.0f ", point.CGPointValue.x, point.CGPointValue.y];
+            }
+            
+            //DEBUG
+            if ([stringsSet containsObject:pointsString]) {
+                NSLog(@"pointsString %@", pointsString);
+                abort();
+            }
+            [stringsSet addObject:pointsString];
+            
+            [svgAsString appendFormat:@"<polygon id=\"%@\" fill=\"#%@\" points=\"%@\"></polygon>\n", gpTriangle.hexColor, gpTriangle.hexColor, pointsString];
+        }
+        
+        [svgAsString appendFormat:@"</g>\n"];
+    }
+    
+    NSString *result = [NSString stringWithFormat:@"color groups %lu, final groups: %lu" , sortedPolylines.count, gpPolygonSets.count];
+    [svgAsString replaceOccurrencesOfString:@"maxWidth" withString:[NSString stringWithFormat:@"%f", self.imageWidth] options:NSLiteralSearch range:NSMakeRange(0, svgAsString.length)];
+    [svgAsString replaceOccurrencesOfString:@"maxHeight" withString:[NSString stringWithFormat:@"%f", self.imageHeight] options:NSLiteralSearch range:NSMakeRange(0, svgAsString.length)];
     NSString *endSvg = @"</g>\n</g>\n</svg>";
     [svgAsString appendString:endSvg];
-    return svgAsString;
+    
+    completion(svgAsString, result);
 }
 
 #pragma mark Private

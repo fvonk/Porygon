@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		197015EF07074B99DEEC5536 /* Pods_Porygon_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20DB5877D70108C0DE6DC2D /* Pods_Porygon_Demo.framework */; };
 		2BD182161EED8F3500271843 /* Porygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182141EED8F3500271843 /* Porygon.h */; };
 		2BD182581EED92BA00271843 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182571EED92BA00271843 /* Tests.m */; };
 		2BD1825A1EED92BA00271843 /* Porygon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD182031EED8CF200271843 /* Porygon.framework */; };
@@ -15,12 +16,10 @@
 		2BD182691EEE35E900271843 /* UIImage+DVSPixel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182671EEE35E900271843 /* UIImage+DVSPixel.h */; };
 		2BD1826A1EEE35E900271843 /* UIImage+DVSPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182681EEE35E900271843 /* UIImage+DVSPixel.m */; };
 		2BD1826D1EEE37D200271843 /* DVSPorygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD1826B1EEE37D200271843 /* DVSPorygon.h */; };
-		2BD1826E1EEE37D200271843 /* DVSPorygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1826C1EEE37D200271843 /* DVSPorygon.m */; };
 		2BD182701EEE42C200271843 /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1826F1EEE42C200271843 /* camera.jpg */; };
 		2BD182791EEE454200271843 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD182781EEE454200271843 /* main.m */; };
 		2BD1827C1EEE454200271843 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1827B1EEE454200271843 /* AppDelegate.m */; };
 		2BD1827F1EEE454200271843 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1827E1EEE454200271843 /* ViewController.m */; };
-		2BD182821EEE454200271843 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BD182801EEE454200271843 /* Main.storyboard */; };
 		2BD182841EEE454200271843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD182831EEE454200271843 /* Assets.xcassets */; };
 		2BD182871EEE454200271843 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BD182851EEE454200271843 /* LaunchScreen.storyboard */; };
 		2BD1830C1EF2465100271843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD1830B1EF2465100271843 /* UIKit.framework */; };
@@ -29,8 +28,22 @@
 		EF026B6E2074B2AA00E0754C /* SVGPolyline.h in Headers */ = {isa = PBXBuildFile; fileRef = EF026B6C2074B2AA00E0754C /* SVGPolyline.h */; };
 		EF026B912074C0B800E0754C /* Porygon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD182031EED8CF200271843 /* Porygon.framework */; };
 		EF026B922074C0B800E0754C /* Porygon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD182031EED8CF200271843 /* Porygon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EFB71A6F20762EEC006934BC /* CenterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB71A6E20762EEC006934BC /* CenterScrollView.m */; };
+		EF83F02C2085F7C5004BF43F /* UIColor+UIColor_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02B2085F7C5004BF43F /* UIColor+UIColor_Category.m */; };
+		EF83F02E2085F842004BF43F /* SVGHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02D2085F842004BF43F /* SVGHandler.swift */; };
+		EF83F0302085F887004BF43F /* CGPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02F2085F887004BF43F /* CGPath+Extension.swift */; };
+		EF83F03720874254004BF43F /* DVSPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = EF83F03420874231004BF43F /* DVSPoint.h */; };
+		EF83F038208742D8004BF43F /* DVSPorygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1826C1EEE37D200271843 /* DVSPorygon.m */; };
+		EF83F039208742EF004BF43F /* DVSPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F03520874231004BF43F /* DVSPoint.m */; };
+		EF94CF0C2080941800A0C208 /* GPPolygonSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EF94CF092080938F00A0C208 /* GPPolygonSet.h */; };
+		EF94CF0D2080941800A0C208 /* GPPolygonSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF94CF072080938200A0C208 /* GPPolygonSet.m */; };
 		EFB71A7220764A0E006934BC /* UIImage+Cropping.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB71A7120764A0E006934BC /* UIImage+Cropping.m */; };
+		EFB71A7520765A38006934BC /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB71A7420765A38006934BC /* ImageController.swift */; };
+		EFB71B68207B703C006934BC /* libMagickWand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B63207B703B006934BC /* libMagickWand.a */; };
+		EFB71B69207B703C006934BC /* libMagickCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B64207B703B006934BC /* libMagickCore.a */; };
+		EFB71B6A207B703C006934BC /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B65207B703C006934BC /* libpng.a */; };
+		EFB71B6B207B703C006934BC /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B66207B703C006934BC /* libjpeg.a */; };
+		EFB71B6C207B703C006934BC /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B67207B703C006934BC /* libtiff.a */; };
+		EFB71BF7207B7150006934BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB71BF5207B7150006934BC /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +97,6 @@
 		2BD1827B1EEE454200271843 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2BD1827D1EEE454200271843 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2BD1827E1EEE454200271843 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		2BD182811EEE454200271843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2BD182831EEE454200271843 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BD182861EEE454200271843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BD182881EEE454200271843 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,12 +106,159 @@
 		2BD183051EF2462300271843 /* PoissonGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PoissonGenerator.hpp; sourceTree = "<group>"; };
 		2BD1830B1EF2465100271843 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2BD1830D1EF2465600271843 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2C7C8898EC03C609CC98F58C /* Pods-Porygon-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Porygon-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Porygon-Demo/Pods-Porygon-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		6BB7F798EAF65A7A65185DAF /* Pods-Porygon-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Porygon-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Porygon-Demo/Pods-Porygon-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		A20DB5877D70108C0DE6DC2D /* Pods_Porygon_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Porygon_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF026B6B2074B2A900E0754C /* SVGPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGPolyline.m; sourceTree = "<group>"; };
 		EF026B6C2074B2AA00E0754C /* SVGPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGPolyline.h; sourceTree = "<group>"; };
-		EFB71A6D20762EEC006934BC /* CenterScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenterScrollView.h; sourceTree = "<group>"; };
-		EFB71A6E20762EEC006934BC /* CenterScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenterScrollView.m; sourceTree = "<group>"; };
+		EF83F02A2085F7C5004BF43F /* UIColor+UIColor_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColor_Category.h"; sourceTree = "<group>"; };
+		EF83F02B2085F7C5004BF43F /* UIColor+UIColor_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColor_Category.m"; sourceTree = "<group>"; };
+		EF83F02D2085F842004BF43F /* SVGHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGHandler.swift; sourceTree = "<group>"; };
+		EF83F02F2085F887004BF43F /* CGPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPath+Extension.swift"; sourceTree = "<group>"; };
+		EF83F03420874231004BF43F /* DVSPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVSPoint.h; sourceTree = "<group>"; };
+		EF83F03520874231004BF43F /* DVSPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DVSPoint.m; sourceTree = "<group>"; };
+		EF94CF072080938200A0C208 /* GPPolygonSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPPolygonSet.m; sourceTree = "<group>"; };
+		EF94CF092080938F00A0C208 /* GPPolygonSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPPolygonSet.h; sourceTree = "<group>"; };
 		EFB71A7020764A0E006934BC /* UIImage+Cropping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Cropping.h"; sourceTree = "<group>"; };
 		EFB71A7120764A0E006934BC /* UIImage+Cropping.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Cropping.m"; sourceTree = "<group>"; };
+		EFB71A7320765A37006934BC /* Porygon-Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Porygon-Demo-Bridging-Header.h"; sourceTree = "<group>"; };
+		EFB71A7420765A38006934BC /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
+		EFB71B63207B703B006934BC /* libMagickWand.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMagickWand.a; sourceTree = "<group>"; };
+		EFB71B64207B703B006934BC /* libMagickCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMagickCore.a; sourceTree = "<group>"; };
+		EFB71B65207B703C006934BC /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpng.a; sourceTree = "<group>"; };
+		EFB71B66207B703C006934BC /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
+		EFB71B67207B703C006934BC /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtiff.a; sourceTree = "<group>"; };
+		EFB71B6F207B7059006934BC /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png.h; sourceTree = "<group>"; };
+		EFB71B70207B7059006934BC /* pnglibconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pnglibconf.h; sourceTree = "<group>"; };
+		EFB71B71207B7059006934BC /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngconf.h; sourceTree = "<group>"; };
+		EFB71B73207B7059006934BC /* jpeglib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpeglib.h; sourceTree = "<group>"; };
+		EFB71B74207B7059006934BC /* jerror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jerror.h; sourceTree = "<group>"; };
+		EFB71B75207B7059006934BC /* jconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jconfig.h; sourceTree = "<group>"; };
+		EFB71B76207B7059006934BC /* jmorecfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jmorecfg.h; sourceTree = "<group>"; };
+		EFB71B78207B7059006934BC /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
+		EFB71B79207B7059006934BC /* gem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gem.h; sourceTree = "<group>"; };
+		EFB71B7A207B7059006934BC /* signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signature.h; sourceTree = "<group>"; };
+		EFB71B7B207B7059006934BC /* distribute-cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "distribute-cache.h"; sourceTree = "<group>"; };
+		EFB71B7C207B7059006934BC /* morphology.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = morphology.h; sourceTree = "<group>"; };
+		EFB71B7D207B7059006934BC /* semaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = semaphore.h; sourceTree = "<group>"; };
+		EFB71B7E207B7059006934BC /* quantize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quantize.h; sourceTree = "<group>"; };
+		EFB71B7F207B7059006934BC /* resample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resample.h; sourceTree = "<group>"; };
+		EFB71B80207B7059006934BC /* composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composite.h; sourceTree = "<group>"; };
+		EFB71B81207B7059006934BC /* delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delegate.h; sourceTree = "<group>"; };
+		EFB71B82207B7059006934BC /* enhance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enhance.h; sourceTree = "<group>"; };
+		EFB71B83207B7059006934BC /* shear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shear.h; sourceTree = "<group>"; };
+		EFB71B84207B7059006934BC /* studio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = studio.h; sourceTree = "<group>"; };
+		EFB71B85207B7059006934BC /* animate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = animate.h; sourceTree = "<group>"; };
+		EFB71B86207B7059006934BC /* channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = channel.h; sourceTree = "<group>"; };
+		EFB71B87207B7059006934BC /* mime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mime.h; sourceTree = "<group>"; };
+		EFB71B88207B7059006934BC /* annotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = annotate.h; sourceTree = "<group>"; };
+		EFB71B89207B7059006934BC /* pixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pixel.h; sourceTree = "<group>"; };
+		EFB71B8A207B7059006934BC /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
+		EFB71B8B207B7059006934BC /* magic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = magic.h; sourceTree = "<group>"; };
+		EFB71B8C207B7059006934BC /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		EFB71B8D207B7059006934BC /* profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profile.h; sourceTree = "<group>"; };
+		EFB71B8E207B7059006934BC /* locale_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = locale_.h; sourceTree = "<group>"; };
+		EFB71B8F207B7059006934BC /* policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = policy.h; sourceTree = "<group>"; };
+		EFB71B90207B7059006934BC /* distort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = distort.h; sourceTree = "<group>"; };
+		EFB71B91207B7059006934BC /* segment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segment.h; sourceTree = "<group>"; };
+		EFB71B92207B7059006934BC /* PreRvIcccm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreRvIcccm.h; sourceTree = "<group>"; };
+		EFB71B93207B7059006934BC /* fx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fx.h; sourceTree = "<group>"; };
+		EFB71B94207B7059006934BC /* widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = widget.h; sourceTree = "<group>"; };
+		EFB71B95207B7059006934BC /* opencl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opencl.h; sourceTree = "<group>"; };
+		EFB71B96207B7059006934BC /* splay-tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "splay-tree.h"; sourceTree = "<group>"; };
+		EFB71B97207B7059006934BC /* feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = feature.h; sourceTree = "<group>"; };
+		EFB71B98207B7059006934BC /* blob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blob.h; sourceTree = "<group>"; };
+		EFB71B99207B7059006934BC /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
+		EFB71B9A207B7059006934BC /* magick-config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "magick-config.h"; sourceTree = "<group>"; };
+		EFB71B9B207B7059006934BC /* string_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_.h; sourceTree = "<group>"; };
+		EFB71B9C207B7059006934BC /* cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cache.h; sourceTree = "<group>"; };
+		EFB71B9D207B7059006934BC /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		EFB71B9E207B7059006934BC /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
+		EFB71B9F207B7059006934BC /* magick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = magick.h; sourceTree = "<group>"; };
+		EFB71BA0207B7059006934BC /* configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = configure.h; sourceTree = "<group>"; };
+		EFB71BA1207B7059006934BC /* hashmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashmap.h; sourceTree = "<group>"; };
+		EFB71BA2207B7059006934BC /* xwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xwindow.h; sourceTree = "<group>"; };
+		EFB71BA3207B7059006934BC /* stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stream.h; sourceTree = "<group>"; };
+		EFB71BA4207B7059006934BC /* ImageMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMagick.h; sourceTree = "<group>"; };
+		EFB71BA5207B7059006934BC /* decorate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decorate.h; sourceTree = "<group>"; };
+		EFB71BA6207B7059006934BC /* registry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registry.h; sourceTree = "<group>"; };
+		EFB71BA7207B7059006934BC /* montage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = montage.h; sourceTree = "<group>"; };
+		EFB71BA8207B7059006934BC /* threshold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threshold.h; sourceTree = "<group>"; };
+		EFB71BA9207B7059006934BC /* cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cipher.h; sourceTree = "<group>"; };
+		EFB71BAA207B7059006934BC /* artifact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = artifact.h; sourceTree = "<group>"; };
+		EFB71BAB207B7059006934BC /* method-attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "method-attribute.h"; sourceTree = "<group>"; };
+		EFB71BAC207B7059006934BC /* accelerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accelerate.h; sourceTree = "<group>"; };
+		EFB71BAD207B7059006934BC /* resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resize.h; sourceTree = "<group>"; };
+		EFB71BAE207B7059006934BC /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
+		EFB71BAF207B7059006934BC /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timer.h; sourceTree = "<group>"; };
+		EFB71BB0207B7059006934BC /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = option.h; sourceTree = "<group>"; };
+		EFB71BB1207B7059006934BC /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
+		EFB71BB2207B7059006934BC /* image-view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "image-view.h"; sourceTree = "<group>"; };
+		EFB71BB3207B7059006934BC /* display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = display.h; sourceTree = "<group>"; };
+		EFB71BB4207B7059006934BC /* MagickCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagickCore.h; sourceTree = "<group>"; };
+		EFB71BB5207B7059006934BC /* monitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = monitor.h; sourceTree = "<group>"; };
+		EFB71BB6207B7059006934BC /* magick-baseconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "magick-baseconfig.h"; sourceTree = "<group>"; };
+		EFB71BB7207B7059006934BC /* xml-tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "xml-tree.h"; sourceTree = "<group>"; };
+		EFB71BB8207B7059006934BC /* compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare.h; sourceTree = "<group>"; };
+		EFB71BB9207B7059006934BC /* magick-type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "magick-type.h"; sourceTree = "<group>"; };
+		EFB71BBA207B7059006934BC /* pixel-accessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pixel-accessor.h"; sourceTree = "<group>"; };
+		EFB71BBB207B7059006934BC /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
+		EFB71BBC207B7059006934BC /* compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress.h; sourceTree = "<group>"; };
+		EFB71BBD207B7059006934BC /* prepress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prepress.h; sourceTree = "<group>"; };
+		EFB71BBE207B7059006934BC /* transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transform.h; sourceTree = "<group>"; };
+		EFB71BBF207B7059006934BC /* memory_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_.h; sourceTree = "<group>"; };
+		EFB71BC0207B7059006934BC /* cache-view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cache-view.h"; sourceTree = "<group>"; };
+		EFB71BC1207B7059006934BC /* histogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = histogram.h; sourceTree = "<group>"; };
+		EFB71BC2207B7059006934BC /* fourier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fourier.h; sourceTree = "<group>"; };
+		EFB71BC3207B7059006934BC /* colorspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorspace.h; sourceTree = "<group>"; };
+		EFB71BC4207B7059006934BC /* token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = token.h; sourceTree = "<group>"; };
+		EFB71BC5207B7059006934BC /* statistic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statistic.h; sourceTree = "<group>"; };
+		EFB71BC6207B7059006934BC /* effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = effect.h; sourceTree = "<group>"; };
+		EFB71BC7207B7059006934BC /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property.h; sourceTree = "<group>"; };
+		EFB71BC8207B7059006934BC /* colormap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colormap.h; sourceTree = "<group>"; };
+		EFB71BC9207B7059006934BC /* module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = module.h; sourceTree = "<group>"; };
+		EFB71BCA207B7059006934BC /* quantum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quantum.h; sourceTree = "<group>"; };
+		EFB71BCB207B7059006934BC /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
+		EFB71BCC207B7059006934BC /* attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attribute.h; sourceTree = "<group>"; };
+		EFB71BCD207B7059006934BC /* deprecate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deprecate.h; sourceTree = "<group>"; };
+		EFB71BCE207B7059006934BC /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
+		EFB71BCF207B7059006934BC /* identify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = identify.h; sourceTree = "<group>"; };
+		EFB71BD0207B7059006934BC /* coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coder.h; sourceTree = "<group>"; };
+		EFB71BD1207B7059006934BC /* random_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random_.h; sourceTree = "<group>"; };
+		EFB71BD2207B7059006934BC /* paint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = paint.h; sourceTree = "<group>"; };
+		EFB71BD3207B7059006934BC /* image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image.h; sourceTree = "<group>"; };
+		EFB71BD4207B7059006934BC /* resource_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource_.h; sourceTree = "<group>"; };
+		EFB71BD5207B7059006934BC /* draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw.h; sourceTree = "<group>"; };
+		EFB71BD6207B7059006934BC /* constitute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constitute.h; sourceTree = "<group>"; };
+		EFB71BD7207B7059006934BC /* geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
+		EFB71BD8207B7059006934BC /* methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = methods.h; sourceTree = "<group>"; };
+		EFB71BDA207B7059006934BC /* composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composite.h; sourceTree = "<group>"; };
+		EFB71BDB207B705A006934BC /* animate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = animate.h; sourceTree = "<group>"; };
+		EFB71BDC207B705A006934BC /* conjure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conjure.h; sourceTree = "<group>"; };
+		EFB71BDD207B705A006934BC /* magick_wand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = magick_wand.h; sourceTree = "<group>"; };
+		EFB71BDE207B705A006934BC /* magick-property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "magick-property.h"; sourceTree = "<group>"; };
+		EFB71BDF207B705A006934BC /* stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stream.h; sourceTree = "<group>"; };
+		EFB71BE0207B705A006934BC /* montage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = montage.h; sourceTree = "<group>"; };
+		EFB71BE1207B705A006934BC /* mogrify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mogrify.h; sourceTree = "<group>"; };
+		EFB71BE2207B705A006934BC /* method-attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "method-attribute.h"; sourceTree = "<group>"; };
+		EFB71BE3207B705A006934BC /* magick-wand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "magick-wand.h"; sourceTree = "<group>"; };
+		EFB71BE4207B705A006934BC /* MagickWand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagickWand.h; sourceTree = "<group>"; };
+		EFB71BE5207B705A006934BC /* display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = display.h; sourceTree = "<group>"; };
+		EFB71BE6207B705A006934BC /* compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare.h; sourceTree = "<group>"; };
+		EFB71BE7207B705A006934BC /* drawing-wand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "drawing-wand.h"; sourceTree = "<group>"; };
+		EFB71BE8207B705A006934BC /* magick-image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "magick-image.h"; sourceTree = "<group>"; };
+		EFB71BE9207B705A006934BC /* pixel-iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pixel-iterator.h"; sourceTree = "<group>"; };
+		EFB71BEA207B705A006934BC /* import.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = import.h; sourceTree = "<group>"; };
+		EFB71BEB207B705A006934BC /* convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert.h; sourceTree = "<group>"; };
+		EFB71BEC207B705A006934BC /* deprecate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deprecate.h; sourceTree = "<group>"; };
+		EFB71BED207B705A006934BC /* wand-view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "wand-view.h"; sourceTree = "<group>"; };
+		EFB71BEE207B705A006934BC /* identify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = identify.h; sourceTree = "<group>"; };
+		EFB71BEF207B705A006934BC /* pixel-wand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pixel-wand.h"; sourceTree = "<group>"; };
+		EFB71BF1207B705A006934BC /* tiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiff.h; sourceTree = "<group>"; };
+		EFB71BF2207B705A006934BC /* tiffvers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiffvers.h; sourceTree = "<group>"; };
+		EFB71BF3207B705A006934BC /* tiffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiffio.h; sourceTree = "<group>"; };
+		EFB71BF4207B705A006934BC /* tiffconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiffconf.h; sourceTree = "<group>"; };
+		EFB71BF6207B7150006934BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +283,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB71B6A207B703C006934BC /* libpng.a in Frameworks */,
 				EF026B912074C0B800E0754C /* Porygon.framework in Frameworks */,
+				EFB71B6C207B703C006934BC /* libtiff.a in Frameworks */,
+				EFB71B68207B703C006934BC /* libMagickWand.a in Frameworks */,
+				EFB71B69207B703C006934BC /* libMagickCore.a in Frameworks */,
+				197015EF07074B99DEEC5536 /* Pods_Porygon_Demo.framework in Frameworks */,
+				EFB71B6B207B703C006934BC /* libjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +304,7 @@
 				2BD182761EEE454200271843 /* Porygon-Demo */,
 				2BD182041EED8CF200271843 /* Products */,
 				2BD1830A1EF2465100271843 /* Frameworks */,
+				B5B9632F02867E02DCCB03B5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,6 +335,12 @@
 				2BD183051EF2462300271843 /* PoissonGenerator.hpp */,
 				EF026B6C2074B2AA00E0754C /* SVGPolyline.h */,
 				EF026B6B2074B2A900E0754C /* SVGPolyline.m */,
+				EF94CF092080938F00A0C208 /* GPPolygonSet.h */,
+				EF94CF072080938200A0C208 /* GPPolygonSet.m */,
+				EF83F02A2085F7C5004BF43F /* UIColor+UIColor_Category.h */,
+				EF83F02B2085F7C5004BF43F /* UIColor+UIColor_Category.m */,
+				EF83F03420874231004BF43F /* DVSPoint.h */,
+				EF83F03520874231004BF43F /* DVSPoint.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -190,15 +362,18 @@
 				2BD1827B1EEE454200271843 /* AppDelegate.m */,
 				2BD1827D1EEE454200271843 /* ViewController.h */,
 				2BD1827E1EEE454200271843 /* ViewController.m */,
-				EFB71A6D20762EEC006934BC /* CenterScrollView.h */,
-				EFB71A6E20762EEC006934BC /* CenterScrollView.m */,
+				EFB71A7420765A38006934BC /* ImageController.swift */,
 				EFB71A7020764A0E006934BC /* UIImage+Cropping.h */,
 				EFB71A7120764A0E006934BC /* UIImage+Cropping.m */,
-				2BD182801EEE454200271843 /* Main.storyboard */,
+				EF83F02D2085F842004BF43F /* SVGHandler.swift */,
+				EF83F02F2085F887004BF43F /* CGPath+Extension.swift */,
+				EFB71B62207B7026006934BC /* imageMagick */,
 				2BD182831EEE454200271843 /* Assets.xcassets */,
 				2BD182851EEE454200271843 /* LaunchScreen.storyboard */,
+				EFB71BF5207B7150006934BC /* Main.storyboard */,
 				2BD182881EEE454200271843 /* Info.plist */,
 				2BD182771EEE454200271843 /* Supporting Files */,
+				EFB71A7320765A37006934BC /* Porygon-Demo-Bridging-Header.h */,
 			);
 			path = "Porygon-Demo";
 			sourceTree = "<group>";
@@ -216,8 +391,208 @@
 			children = (
 				2BD1830D1EF2465600271843 /* CoreGraphics.framework */,
 				2BD1830B1EF2465100271843 /* UIKit.framework */,
+				A20DB5877D70108C0DE6DC2D /* Pods_Porygon_Demo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5B9632F02867E02DCCB03B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2C7C8898EC03C609CC98F58C /* Pods-Porygon-Demo.debug.xcconfig */,
+				6BB7F798EAF65A7A65185DAF /* Pods-Porygon-Demo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EFB71B62207B7026006934BC /* imageMagick */ = {
+			isa = PBXGroup;
+			children = (
+				EFB71B6D207B7059006934BC /* include */,
+				EFB71B66207B703C006934BC /* libjpeg.a */,
+				EFB71B64207B703B006934BC /* libMagickCore.a */,
+				EFB71B63207B703B006934BC /* libMagickWand.a */,
+				EFB71B65207B703C006934BC /* libpng.a */,
+				EFB71B67207B703C006934BC /* libtiff.a */,
+			);
+			name = imageMagick;
+			sourceTree = "<group>";
+		};
+		EFB71B6D207B7059006934BC /* include */ = {
+			isa = PBXGroup;
+			children = (
+				EFB71B6E207B7059006934BC /* png */,
+				EFB71B72207B7059006934BC /* jpeg */,
+				EFB71B77207B7059006934BC /* magick */,
+				EFB71BD9207B7059006934BC /* wand */,
+				EFB71BF0207B705A006934BC /* tiff */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		EFB71B6E207B7059006934BC /* png */ = {
+			isa = PBXGroup;
+			children = (
+				EFB71B6F207B7059006934BC /* png.h */,
+				EFB71B70207B7059006934BC /* pnglibconf.h */,
+				EFB71B71207B7059006934BC /* pngconf.h */,
+			);
+			path = png;
+			sourceTree = "<group>";
+		};
+		EFB71B72207B7059006934BC /* jpeg */ = {
+			isa = PBXGroup;
+			children = (
+				EFB71B73207B7059006934BC /* jpeglib.h */,
+				EFB71B74207B7059006934BC /* jerror.h */,
+				EFB71B75207B7059006934BC /* jconfig.h */,
+				EFB71B76207B7059006934BC /* jmorecfg.h */,
+			);
+			path = jpeg;
+			sourceTree = "<group>";
+		};
+		EFB71B77207B7059006934BC /* magick */ = {
+			isa = PBXGroup;
+			children = (
+				EFB71B78207B7059006934BC /* type.h */,
+				EFB71B79207B7059006934BC /* gem.h */,
+				EFB71B7A207B7059006934BC /* signature.h */,
+				EFB71B7B207B7059006934BC /* distribute-cache.h */,
+				EFB71B7C207B7059006934BC /* morphology.h */,
+				EFB71B7D207B7059006934BC /* semaphore.h */,
+				EFB71B7E207B7059006934BC /* quantize.h */,
+				EFB71B7F207B7059006934BC /* resample.h */,
+				EFB71B80207B7059006934BC /* composite.h */,
+				EFB71B81207B7059006934BC /* delegate.h */,
+				EFB71B82207B7059006934BC /* enhance.h */,
+				EFB71B83207B7059006934BC /* shear.h */,
+				EFB71B84207B7059006934BC /* studio.h */,
+				EFB71B85207B7059006934BC /* animate.h */,
+				EFB71B86207B7059006934BC /* channel.h */,
+				EFB71B87207B7059006934BC /* mime.h */,
+				EFB71B88207B7059006934BC /* annotate.h */,
+				EFB71B89207B7059006934BC /* pixel.h */,
+				EFB71B8A207B7059006934BC /* client.h */,
+				EFB71B8B207B7059006934BC /* magic.h */,
+				EFB71B8C207B7059006934BC /* version.h */,
+				EFB71B8D207B7059006934BC /* profile.h */,
+				EFB71B8E207B7059006934BC /* locale_.h */,
+				EFB71B8F207B7059006934BC /* policy.h */,
+				EFB71B90207B7059006934BC /* distort.h */,
+				EFB71B91207B7059006934BC /* segment.h */,
+				EFB71B92207B7059006934BC /* PreRvIcccm.h */,
+				EFB71B93207B7059006934BC /* fx.h */,
+				EFB71B94207B7059006934BC /* widget.h */,
+				EFB71B95207B7059006934BC /* opencl.h */,
+				EFB71B96207B7059006934BC /* splay-tree.h */,
+				EFB71B97207B7059006934BC /* feature.h */,
+				EFB71B98207B7059006934BC /* blob.h */,
+				EFB71B99207B7059006934BC /* layer.h */,
+				EFB71B9A207B7059006934BC /* magick-config.h */,
+				EFB71B9B207B7059006934BC /* string_.h */,
+				EFB71B9C207B7059006934BC /* cache.h */,
+				EFB71B9D207B7059006934BC /* matrix.h */,
+				EFB71B9E207B7059006934BC /* color.h */,
+				EFB71B9F207B7059006934BC /* magick.h */,
+				EFB71BA0207B7059006934BC /* configure.h */,
+				EFB71BA1207B7059006934BC /* hashmap.h */,
+				EFB71BA2207B7059006934BC /* xwindow.h */,
+				EFB71BA3207B7059006934BC /* stream.h */,
+				EFB71BA4207B7059006934BC /* ImageMagick.h */,
+				EFB71BA5207B7059006934BC /* decorate.h */,
+				EFB71BA6207B7059006934BC /* registry.h */,
+				EFB71BA7207B7059006934BC /* montage.h */,
+				EFB71BA8207B7059006934BC /* threshold.h */,
+				EFB71BA9207B7059006934BC /* cipher.h */,
+				EFB71BAA207B7059006934BC /* artifact.h */,
+				EFB71BAB207B7059006934BC /* method-attribute.h */,
+				EFB71BAC207B7059006934BC /* accelerate.h */,
+				EFB71BAD207B7059006934BC /* resize.h */,
+				EFB71BAE207B7059006934BC /* api.h */,
+				EFB71BAF207B7059006934BC /* timer.h */,
+				EFB71BB0207B7059006934BC /* option.h */,
+				EFB71BB1207B7059006934BC /* list.h */,
+				EFB71BB2207B7059006934BC /* image-view.h */,
+				EFB71BB3207B7059006934BC /* display.h */,
+				EFB71BB4207B7059006934BC /* MagickCore.h */,
+				EFB71BB5207B7059006934BC /* monitor.h */,
+				EFB71BB6207B7059006934BC /* magick-baseconfig.h */,
+				EFB71BB7207B7059006934BC /* xml-tree.h */,
+				EFB71BB8207B7059006934BC /* compare.h */,
+				EFB71BB9207B7059006934BC /* magick-type.h */,
+				EFB71BBA207B7059006934BC /* pixel-accessor.h */,
+				EFB71BBB207B7059006934BC /* log.h */,
+				EFB71BBC207B7059006934BC /* compress.h */,
+				EFB71BBD207B7059006934BC /* prepress.h */,
+				EFB71BBE207B7059006934BC /* transform.h */,
+				EFB71BBF207B7059006934BC /* memory_.h */,
+				EFB71BC0207B7059006934BC /* cache-view.h */,
+				EFB71BC1207B7059006934BC /* histogram.h */,
+				EFB71BC2207B7059006934BC /* fourier.h */,
+				EFB71BC3207B7059006934BC /* colorspace.h */,
+				EFB71BC4207B7059006934BC /* token.h */,
+				EFB71BC5207B7059006934BC /* statistic.h */,
+				EFB71BC6207B7059006934BC /* effect.h */,
+				EFB71BC7207B7059006934BC /* property.h */,
+				EFB71BC8207B7059006934BC /* colormap.h */,
+				EFB71BC9207B7059006934BC /* module.h */,
+				EFB71BCA207B7059006934BC /* quantum.h */,
+				EFB71BCB207B7059006934BC /* utility.h */,
+				EFB71BCC207B7059006934BC /* attribute.h */,
+				EFB71BCD207B7059006934BC /* deprecate.h */,
+				EFB71BCE207B7059006934BC /* exception.h */,
+				EFB71BCF207B7059006934BC /* identify.h */,
+				EFB71BD0207B7059006934BC /* coder.h */,
+				EFB71BD1207B7059006934BC /* random_.h */,
+				EFB71BD2207B7059006934BC /* paint.h */,
+				EFB71BD3207B7059006934BC /* image.h */,
+				EFB71BD4207B7059006934BC /* resource_.h */,
+				EFB71BD5207B7059006934BC /* draw.h */,
+				EFB71BD6207B7059006934BC /* constitute.h */,
+				EFB71BD7207B7059006934BC /* geometry.h */,
+				EFB71BD8207B7059006934BC /* methods.h */,
+			);
+			path = magick;
+			sourceTree = "<group>";
+		};
+		EFB71BD9207B7059006934BC /* wand */ = {
+			isa = PBXGroup;
+			children = (
+				EFB71BDA207B7059006934BC /* composite.h */,
+				EFB71BDB207B705A006934BC /* animate.h */,
+				EFB71BDC207B705A006934BC /* conjure.h */,
+				EFB71BDD207B705A006934BC /* magick_wand.h */,
+				EFB71BDE207B705A006934BC /* magick-property.h */,
+				EFB71BDF207B705A006934BC /* stream.h */,
+				EFB71BE0207B705A006934BC /* montage.h */,
+				EFB71BE1207B705A006934BC /* mogrify.h */,
+				EFB71BE2207B705A006934BC /* method-attribute.h */,
+				EFB71BE3207B705A006934BC /* magick-wand.h */,
+				EFB71BE4207B705A006934BC /* MagickWand.h */,
+				EFB71BE5207B705A006934BC /* display.h */,
+				EFB71BE6207B705A006934BC /* compare.h */,
+				EFB71BE7207B705A006934BC /* drawing-wand.h */,
+				EFB71BE8207B705A006934BC /* magick-image.h */,
+				EFB71BE9207B705A006934BC /* pixel-iterator.h */,
+				EFB71BEA207B705A006934BC /* import.h */,
+				EFB71BEB207B705A006934BC /* convert.h */,
+				EFB71BEC207B705A006934BC /* deprecate.h */,
+				EFB71BED207B705A006934BC /* wand-view.h */,
+				EFB71BEE207B705A006934BC /* identify.h */,
+				EFB71BEF207B705A006934BC /* pixel-wand.h */,
+			);
+			path = wand;
+			sourceTree = "<group>";
+		};
+		EFB71BF0207B705A006934BC /* tiff */ = {
+			isa = PBXGroup;
+			children = (
+				EFB71BF1207B705A006934BC /* tiff.h */,
+				EFB71BF2207B705A006934BC /* tiffvers.h */,
+				EFB71BF3207B705A006934BC /* tiffio.h */,
+				EFB71BF4207B705A006934BC /* tiffconf.h */,
+			);
+			path = tiff;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,8 +605,10 @@
 				2BD182161EED8F3500271843 /* Porygon.h in Headers */,
 				2BD1826D1EEE37D200271843 /* DVSPorygon.h in Headers */,
 				2BD182691EEE35E900271843 /* UIImage+DVSPixel.h in Headers */,
+				EF83F03720874254004BF43F /* DVSPoint.h in Headers */,
 				2BD182631EED93E600271843 /* delaunay.h in Headers */,
 				EF026B6E2074B2AA00E0754C /* SVGPolyline.h in Headers */,
+				EF94CF0C2080941800A0C208 /* GPPolygonSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,10 +655,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2BD182891EEE454200271843 /* Build configuration list for PBXNativeTarget "Porygon-Demo" */;
 			buildPhases = (
+				276DCBD62A8A1D07CA20B886 /* [CP] Check Pods Manifest.lock */,
 				2BD182711EEE454200271843 /* Sources */,
 				2BD182721EEE454200271843 /* Frameworks */,
 				2BD182731EEE454200271843 /* Resources */,
 				EF026B932074C0B800E0754C /* Embed Frameworks */,
+				0885462627B76BD848D850F0 /* [CP] Embed Pods Frameworks */,
+				4A1B0DC86F93669876F09C1D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -304,7 +684,6 @@
 				TargetAttributes = {
 					2BD182021EED8CF200271843 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = NXD7C56LEN;
 						ProvisioningStyle = Manual;
 					};
 					2BD182541EED92BA00271843 = {
@@ -314,6 +693,7 @@
 					2BD182741EEE454200271843 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = ZM48L425K6;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -331,9 +711,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				2BD182741EEE454200271843 /* Porygon-Demo */,
 				2BD182021EED8CF200271843 /* Porygon */,
 				2BD182541EED92BA00271843 /* Tests */,
-				2BD182741EEE454200271843 /* Porygon-Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -358,22 +738,82 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB71BF7207B7150006934BC /* Main.storyboard in Resources */,
 				2BD182871EEE454200271843 /* LaunchScreen.storyboard in Resources */,
 				2BD182841EEE454200271843 /* Assets.xcassets in Resources */,
-				2BD182821EEE454200271843 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0885462627B76BD848D850F0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Porygon-Demo/Pods-Porygon-Demo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
+				"${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPImagePicker.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Porygon-Demo/Pods-Porygon-Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		276DCBD62A8A1D07CA20B886 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Porygon-Demo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A1B0DC86F93669876F09C1D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Porygon-Demo/Pods-Porygon-Demo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2BD181FE1EED8CF200271843 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF83F039208742EF004BF43F /* DVSPoint.m in Sources */,
+				EF94CF0D2080941800A0C208 /* GPPolygonSet.m in Sources */,
 				2BD1826A1EEE35E900271843 /* UIImage+DVSPixel.m in Sources */,
 				EF026B6D2074B2AA00E0754C /* SVGPolyline.m in Sources */,
-				2BD1826E1EEE37D200271843 /* DVSPorygon.m in Sources */,
+				EF83F038208742D8004BF43F /* DVSPorygon.m in Sources */,
 				2BD182621EED93E600271843 /* delaunay.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,11 +830,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFB71A6F20762EEC006934BC /* CenterScrollView.m in Sources */,
+				EF83F0302085F887004BF43F /* CGPath+Extension.swift in Sources */,
 				2BD1827F1EEE454200271843 /* ViewController.m in Sources */,
 				EFB71A7220764A0E006934BC /* UIImage+Cropping.m in Sources */,
 				2BD1827C1EEE454200271843 /* AppDelegate.m in Sources */,
+				EF83F02C2085F7C5004BF43F /* UIColor+UIColor_Category.m in Sources */,
+				EF83F02E2085F842004BF43F /* SVGHandler.swift in Sources */,
 				2BD182791EEE454200271843 /* main.m in Sources */,
+				EFB71A7520765A38006934BC /* ImageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,20 +857,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2BD182801EEE454200271843 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2BD182811EEE454200271843 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2BD182851EEE454200271843 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2BD182861EEE454200271843 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EFB71BF5207B7150006934BC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFB71BF6207B7150006934BC /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -553,7 +996,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = NXD7C56LEN;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -574,7 +1017,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = NXD7C56LEN;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -615,36 +1058,59 @@
 		};
 		2BD1828A1EEE454200271843 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C7C8898EC03C609CC98F58C /* Pods-Porygon-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZM48L425K6;
+				ENABLE_BITCODE = NO;
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = "Porygon-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Porygon-Demo",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ent.polygon-demo.puzzles";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Porygon-Demo/Porygon-Demo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		2BD1828B1EEE454200271843 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BB7F798EAF65A7A65185DAF /* Pods-Porygon-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZM48L425K6;
+				ENABLE_BITCODE = NO;
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = "Porygon-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Porygon-Demo",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ent.polygon-demo.puzzles";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Porygon-Demo/Porygon-Demo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

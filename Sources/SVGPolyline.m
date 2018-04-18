@@ -11,7 +11,7 @@
 
 @implementation SVGPolyline
 
-- (instancetype)initWithIdentifier:(NSString *)identifier withHexColor:(NSString *)hexColor withPoints:(NSArray<NSValue *> *)points
+- (_Nonnull instancetype)initWithIdentifier:(NSString * _Nonnull)identifier withHexColor:(NSString * _Nonnull)hexColor withPoints:(NSArray<NSValue *> * _Nonnull)points
 {
     self = [super init];
     if (self) {

@@ -25,8 +25,9 @@
 //  THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "Porygon_Demo-Swift.h"
 
-@interface ViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate>
+@interface ViewController : UIViewController <ImageGetDelegate>
 
 
 @end

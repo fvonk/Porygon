@@ -39,3 +39,4 @@ struct PixelData {
 - (struct PixelData)pixelData;
 
 @end
+

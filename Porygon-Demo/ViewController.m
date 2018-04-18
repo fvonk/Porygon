@@ -26,21 +26,30 @@
 
 #import "ViewController.h"
 #import "DVSPorygon.h"
-#import "CenterScrollView.h"
 #import "UIImage+Cropping.h"
+@import YPImagePicker;
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
-@property (weak, nonatomic) IBOutlet CenterScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UISlider *complexitySlider;
 @property (nonatomic) DVSPorygon *porygon;
 @property (nonatomic) UIImage *currentImage;
-@property (weak, nonatomic) IBOutlet UIButton *cropButton;
+@property (nonatomic) UIImage *originImage;
+@property (nonatomic) float complexity;
 
 @property (nonatomic) NSOperationQueue *operationQueue;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidthConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
+@property (nonatomic) ImageController *imageController;
+@property (weak, nonatomic) IBOutlet UITextField *colorsTextView;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapgGesture;
+@property (weak, nonatomic) IBOutlet UILabel *verticesCount;
+@property (weak, nonatomic) IBOutlet UITextField *colorTolerance;
+@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
+@property (weak, nonatomic) IBOutlet UITextField *minSquare;
+@property (weak, nonatomic) IBOutlet UITextField *maxSquare;
+@property (weak, nonatomic) IBOutlet UILabel *roughLabel;
+@property (weak, nonatomic) IBOutlet UIButton *generateButton;
 
 @end
 
@@ -52,31 +61,33 @@
     
     _slider.minimumValue = DVS_MIN_VERTEX_COUNT;
     _slider.maximumValue = DVS_MAX_VERTEX_COUNT;
+    _porygon.vertexCount = 3000;
     _slider.value = _porygon.vertexCount;
-    
-    _scrollView.minimumZoomScale = 1;
-    _scrollView.maximumZoomScale = 3;
-    [_scrollView setContentSize:_imageView.frame.size];
     
     _operationQueue = [[NSOperationQueue alloc] init];
     [_operationQueue setMaxConcurrentOperationCount:1];
-    self.currentImage = [UIImage imageNamed:@"camera"];
+    self.currentImage = [UIImage imageNamed:@"photo"];
+    self.originImage = [UIImage imageNamed:@"photo"];
     self.imageView.image = self.currentImage;
-    [self updateImageConstraints];
     
-    [_cropButton setHidden:YES];
-    
+    [self updateEstimate];
     [self updatePorygon];
+
+//    [[SVGHandler alloc] init];
+}
+- (IBAction)tapAction:(UITapGestureRecognizer *)sender {
+    [self.view endEditing:YES];
+    self.currentImage = self.originImage;
 }
 
 -(void)updatePorygon {
     [_operationQueue cancelAllOperations];
     __weak typeof(self)weakSelf = self;
+    [self.porygon setColorTolerance:_colorTolerance.text.floatValue];
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         UIImage *resultImage = [weakSelf.porygon lowPolyWithImage:weakSelf.currentImage];
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.imageView.image = resultImage;
-            [weakSelf updateImageConstraints];
         });
     }];
     [_operationQueue addOperation:operation];
@@ -85,81 +96,85 @@
 - (IBAction)sliderValueChanged:(UISlider *)sender {
     if (_porygon.vertexCount != sender.value) {
         _porygon.vertexCount = sender.value;
+        [_verticesCount setText:[NSString stringWithFormat:@"%.0f", sender.value]];
         [self updatePorygon];
     }
 }
 
-- (IBAction)generateSVG:(UIButton *)sender {
-    NSString *svgString = [_porygon generateSVG];
-    NSData *svgData = [svgString dataUsingEncoding:NSUTF8StringEncoding];
-    NSURL *filePath = [NSURL fileURLWithPath:[[NSTemporaryDirectory() stringByAppendingString:[[NSUUID UUID] UUIDString]] stringByAppendingPathExtension:@"svg"]];
-    [svgData writeToURL:filePath atomically:YES];
+- (IBAction)complexityChanged:(UISlider *)sender {
+    if (_complexity != _complexitySlider.value) {
+        self.complexity = _complexitySlider.value;
+        
+        [self updateEstimate];
+    }
+}
+
+-(void)updateEstimate {
+    float maxSquareEstimate = pow(2, -_complexitySlider.value);
     
-    NSArray *objectsToShare = @[filePath];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
-    [self presentViewController:activityVC animated:YES completion:nil];
+    _porygon.vertexCount = 3000 + pow(2, self.complexity) * 2;
+    [_slider setValue:_porygon.vertexCount animated:YES];
+    [_verticesCount setText:[NSString stringWithFormat:@"%d", _porygon.vertexCount]];
+    self.colorTolerance.text = [NSString stringWithFormat:@"%.2f", 0.8 / self.complexity];
+    
+    [self updatePorygon];
+    
+    self.maxSquare.text = [NSString stringWithFormat:@"%f", maxSquareEstimate];
+    self.minSquare.text = [NSString stringWithFormat:@"%f", maxSquareEstimate * 0.1];
+    self.roughLabel.text = [NSString stringWithFormat:@"~ %0.f groups", (1 / maxSquareEstimate) * 2 * 9 / _complexitySlider.value];
 }
 
-- (IBAction)getImageFromGallery:(UIButton *)sender {
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    imagePickerController.delegate = self;
-    [self presentViewController:imagePickerController animated:YES completion:nil];
+- (IBAction)generateSVG:(UIButton *)sender {
+    [self.generateButton setEnabled:NO];
+    [self.porygon setColorTolerance:_colorTolerance.text.floatValue];
+    [self.porygon setMinSquare:_minSquare.text.floatValue];
+    [self.porygon setMaxSquare:_maxSquare.text.floatValue];
+    
+    self.resultLabel.text = @"processing...";
+    [self.progressView setProgress:0.0 animated:NO];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self.porygon generateSVG:^(double prog) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.progressView setProgress:(float)prog animated:YES];
+            });
+        } andCompletion:^(NSString *svgString, NSString *result) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.generateButton setEnabled:YES];
+                
+                NSData *svgData = [svgString dataUsingEncoding:NSUTF8StringEncoding];
+                NSURL *filePath = [NSURL fileURLWithPath:[[NSTemporaryDirectory() stringByAppendingString:[[NSUUID UUID] UUIDString]] stringByAppendingPathExtension:@"svg"]];
+                [svgData writeToURL:filePath atomically:YES];
+                
+                NSArray *objectsToShare = @[filePath];
+                UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+                [self presentViewController:activityVC animated:YES completion:nil];
+                
+                self.resultLabel.text = result;
+            });
+        }];
+    });
+
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    //You can retrieve the actual UIImage
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+- (IBAction)makeNewPhoto:(UIButton *)sender {
+    _imageController = [[ImageController alloc] init];
+    [_imageController setImageDidGetter:self];
+    
+    YPImagePicker *ypImagePicker = [_imageController showImages];
+    [self presentViewController:ypImagePicker animated:YES completion:nil];
+}
+
+-(void)imageDidGet:(UIImage *)image {
+    self.originImage = image;
     self.currentImage = image;
     [self updatePorygon];
-    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)setCurrentImage:(UIImage *)currentImage {
+    UIImage *compressedImage = [currentImage compressImage];
     
-    CIImage *coreImage = [[CIImage alloc] initWithImage:currentImage];
-    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone"];
-    [filter setValue:coreImage forKey:kCIInputImageKey];
-    [filter setValue:@0.5 forKey:kCIInputIntensityKey];
-    
-    EAGLContext *openGLContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
-    CIContext *context = [CIContext contextWithEAGLContext:openGLContext];
-    
-    CIImage *outputImage = [filter valueForKey:kCIOutputImageKey];
-    CGImageRef cgImageResult = [context createCGImage:outputImage fromRect:[outputImage extent]];
-    UIImage *resultImage = [UIImage imageWithCGImage:cgImageResult];
-    
-    _currentImage = [resultImage compressImage];
-}
-
-
-- (IBAction)cropImage:(UIButton *)sender {
-    CGFloat scale = 1 / _scrollView.zoomScale;
-    CGRect visibleRect = CGRectMake(_scrollView.contentOffset.x * scale, _scrollView.contentOffset.y * scale, _scrollView.bounds.size.width * scale, _scrollView.bounds.size.height * scale);
-    CGImageRef ref = CGImageCreateWithImageInRect(_imageView.image.CGImage, visibleRect);
-    UIImage *croppedImage = [UIImage imageWithCGImage:ref];
-    
-    _currentImage = croppedImage;
-    _imageView.image = croppedImage;
-    [self updateImageConstraints];
-}
-
--(void)updateImageConstraints {
-    _imageWidthConstraint.constant = _imageView.image.size.width;
-    _imageHeightConstraint.constant = _imageView.image.size.height;
-    CGFloat scaleHeight = _scrollView.frame.size.width / _imageView.image.size.width;
-    CGFloat scaleWidth = _scrollView.frame.size.height / _imageView.image.size.height;
-    _scrollView.minimumZoomScale = MAX(scaleWidth, scaleHeight);
-    _scrollView.zoomScale = MAX(scaleWidth, scaleHeight);
-}
-
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return self.imageView;
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView
-{
-    [_cropButton setHidden:scrollView.zoomScale <= _scrollView.minimumZoomScale];
+    int colors = _colorsTextView.text.intValue;
+    _currentImage = [UIImage convertImageToIndexed:compressedImage noOfColors:colors withoutTransformation:YES];
 }
 
 @end
