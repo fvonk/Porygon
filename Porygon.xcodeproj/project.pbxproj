@@ -31,7 +31,8 @@
 		EF1345DA208783380045FDAF /* Porygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BD182141EED8F3500271843 /* Porygon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF1345DD208784A20045FDAF /* SVGHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02D2085F842004BF43F /* SVGHandler.swift */; };
 		EF1345DE208784A20045FDAF /* CGPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02F2085F887004BF43F /* CGPath+Extension.swift */; };
-		EF83F02C2085F7C5004BF43F /* SVGColor_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02B2085F7C5004BF43F /* SVGColor_Category.m */; };
+		EF13474020889D030045FDAF /* SVGColor_Category.h in Headers */ = {isa = PBXBuildFile; fileRef = EF83F02A2085F7C5004BF43F /* SVGColor_Category.h */; };
+		EF13474120889D030045FDAF /* SVGColor_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02B2085F7C5004BF43F /* SVGColor_Category.m */; };
 		EF83F03720874254004BF43F /* DVSPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = EF83F03420874231004BF43F /* DVSPoint.h */; };
 		EF83F038208742D8004BF43F /* DVSPorygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1826C1EEE37D200271843 /* DVSPorygon.m */; };
 		EF83F039208742EF004BF43F /* DVSPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F03520874231004BF43F /* DVSPoint.m */; };
@@ -622,6 +623,7 @@
 				2BD182631EED93E600271843 /* delaunay.h in Headers */,
 				EF1345DA208783380045FDAF /* Porygon.h in Headers */,
 				EF026B6E2074B2AA00E0754C /* SVGPolyline.h in Headers */,
+				EF13474020889D030045FDAF /* SVGColor_Category.h in Headers */,
 				EF94CF0C2080941800A0C208 /* GPPolygonSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -823,6 +825,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF13474120889D030045FDAF /* SVGColor_Category.m in Sources */,
 				EF83F039208742EF004BF43F /* DVSPoint.m in Sources */,
 				EF94CF0D2080941800A0C208 /* GPPolygonSet.m in Sources */,
 				2BD1826A1EEE35E900271843 /* SVGImage+Extensions.m in Sources */,
@@ -848,7 +851,6 @@
 				2BD1827F1EEE454200271843 /* ViewController.m in Sources */,
 				EFB71A7220764A0E006934BC /* UIImage+Cropping.m in Sources */,
 				2BD1827C1EEE454200271843 /* AppDelegate.m in Sources */,
-				EF83F02C2085F7C5004BF43F /* SVGColor_Category.m in Sources */,
 				EF1345DD208784A20045FDAF /* SVGHandler.swift in Sources */,
 				2BD182791EEE454200271843 /* main.m in Sources */,
 				EFB71A7520765A38006934BC /* ImageController.swift in Sources */,
