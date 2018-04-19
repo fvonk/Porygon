@@ -14,5 +14,7 @@ Pod::Spec.new do |s|
   s.source_files  = "Sources/*.{h,m,c}"
   s.public_header_files = "Sources/*.h"
   s.framework  = "UIKit"
+  s.dependency 'PocketSVG', '~> 2.0'
+  s.dependency 'ImageMagick', '6.8.8-9'
   s.requires_arc = true
 end
