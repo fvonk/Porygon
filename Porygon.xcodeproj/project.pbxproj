@@ -33,6 +33,11 @@
 		EF1345DE208784A20045FDAF /* CGPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02F2085F887004BF43F /* CGPath+Extension.swift */; };
 		EF13474020889D030045FDAF /* SVGColor_Category.h in Headers */ = {isa = PBXBuildFile; fileRef = EF83F02A2085F7C5004BF43F /* SVGColor_Category.h */; };
 		EF13474120889D030045FDAF /* SVGColor_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F02B2085F7C5004BF43F /* SVGColor_Category.m */; };
+		EF1347462089D18B0045FDAF /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B66207B703C006934BC /* libjpeg.a */; };
+		EF1347472089D18B0045FDAF /* libMagickCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B64207B703B006934BC /* libMagickCore.a */; };
+		EF1347482089D18B0045FDAF /* libMagickWand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B63207B703B006934BC /* libMagickWand.a */; };
+		EF1347492089D18B0045FDAF /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B65207B703C006934BC /* libpng.a */; };
+		EF13474A2089D18B0045FDAF /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB71B67207B703C006934BC /* libtiff.a */; };
 		EF83F03720874254004BF43F /* DVSPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = EF83F03420874231004BF43F /* DVSPoint.h */; };
 		EF83F038208742D8004BF43F /* DVSPorygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1826C1EEE37D200271843 /* DVSPorygon.m */; };
 		EF83F039208742EF004BF43F /* DVSPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = EF83F03520874231004BF43F /* DVSPoint.m */; };
@@ -270,8 +275,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1347482089D18B0045FDAF /* libMagickWand.a in Frameworks */,
 				2BD1830E1EF2465600271843 /* CoreGraphics.framework in Frameworks */,
+				EF13474A2089D18B0045FDAF /* libtiff.a in Frameworks */,
 				2BD1830C1EF2465100271843 /* UIKit.framework in Frameworks */,
+				EF1347472089D18B0045FDAF /* libMagickCore.a in Frameworks */,
+				EF1347462089D18B0045FDAF /* libjpeg.a in Frameworks */,
+				EF1347492089D18B0045FDAF /* libpng.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,6 +1031,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Porygon/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Porygon-Demo",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ent.polygon.puzzles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1044,6 +1058,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Porygon/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Porygon-Demo",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ent.polygon.puzzles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
