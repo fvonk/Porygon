@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "PavelKozlov" => "pavelcauselov@gmail.com" }
   s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/fvonk/Porygon.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/fvonk/Porygon.git" }
   s.source_files  = "Sources/*.{h,m,c}"
   s.public_header_files = "Sources/*.h"
   s.framework  = "UIKit"
